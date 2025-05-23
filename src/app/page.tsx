@@ -5,11 +5,13 @@ import { Calendar, Heart, MapPin, Send, Volume2, VolumeX } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
-export default function Home() {
+
+// Client component that uses useSearchParams
+function HomeContent() {
   const searchParams = useSearchParams();
   const guestName = searchParams.get("to") || "Tamu Terhormat";
   const decodedGuestName = decodeURIComponent(guestName.replace(/\+/g, " "));
@@ -710,5 +712,14 @@ export default function Home() {
       </p>
     </footer>
   </div>
+  );
+}
+
+// Main page component with Suspense boundary
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="h-dvh w-full bg-[#F9F3E9] flex items-center justify-center">Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }
