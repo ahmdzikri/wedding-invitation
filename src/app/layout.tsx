@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Amiri, Geist, Geist_Mono, Great_Vibes } from "next/font/google";
+import { Toaster } from "~/components/ui/sonner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -11,6 +12,17 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const greatVibes = Great_Vibes({
+  variable: "--font-great-vibes",
+  subsets: ["latin"],
+  weight: "400",
+})
+const amiri = Amiri({
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  variable: "--font-amiri",
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +36,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${greatVibes.variable} ${amiri.variable} antialiased`}>
+        <Toaster />
         {children}
       </body>
     </html>
