@@ -161,7 +161,7 @@ export default function Home() {
             className="mb-8"
           >
             <h1 className="text-6xl font-great-vibes text-[#8E7151] mb-2">
-              Rina & Dimas
+              Nisa & Reza
             </h1>
             <p className="text-[#C4A77D] text-sm tracking-widest">
               15 • 06 • 2025
@@ -251,8 +251,8 @@ export default function Home() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="mb-8"
         >
-          <h1 className="text-4xl font-serif text-[#8E7151] mb-2">Rina & Dimas</h1>
-          <p className="text-[#C4A77D] text-sm tracking-widest">15 • 06 • 2025</p>
+          <h1 className="text-6xl font-great-vibes text-[#8E7151] mb-2">Nisa & Reza</h1>
+          <p className="text-[#C4A77D] text-lg tracking-widest">15 • 05 • 2025</p>
         </motion.div>
 
         <motion.div
