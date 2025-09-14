@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Amiri, Geist, Geist_Mono, Great_Vibes } from "next/font/google";
+import QueryProvider from "~/components/QueryProvider";
 import { Toaster } from "~/components/ui/sonner";
 import "./globals.css";
 
@@ -37,8 +38,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${greatVibes.variable} ${amiri.variable} antialiased`}>
-        <Toaster />
-        {children}
+        <QueryProvider>
+          <Toaster />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );
