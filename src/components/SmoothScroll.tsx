@@ -1,36 +1,62 @@
 "use client";
 
 type Props = {
-    children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-import LocomotiveScroll from 'locomotive-scroll';
+import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/locomotive-scroll.css";
-import React from 'react';
-
+import React from "react";
 
 function SmoothScroll({ children }: Props) {
+  const ref = React.useRef<HTMLElement | null>(null);
 
-    const ref = React.useRef<HTMLElement | null>(null)
+  React.useLayoutEffect(() => {
+    const locomotiveScroll = new LocomotiveScroll({
+      el: ref.current as HTMLElement,
+      smooth: true,
+      multiplier: 0.4, // Slow scroll speed
+      lerp: 0.03, // Smooth interpolation
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smartphone: {
+        smooth: true,
+      },
+      tablet: {
+        breakpoint: 768,
+        smooth: true,
+      },
+    });
+    const handleWheelOnExcluded = (e: WheelEvent) => {
+      const target = e.target as HTMLElement;
+      const scrollArea = target.closest(
+        '[data-scroll="false"], [data-scroll-section="false"]'
+      );
 
-    React.useLayoutEffect(() => {
-        const locomotiveScroll = new LocomotiveScroll({
-            el: ref.current as HTMLElement,
-            smooth: true,
-        })
+      if (scrollArea) {
+        e.stopPropagation();
+        // Let the native scroll behavior handle this
+        return;
+      }
+    };
 
-        return () => {
-            locomotiveScroll?.destroy()
-        }
-    }, [])
+    document.addEventListener("wheel", handleWheelOnExcluded, {
+      capture: true,
+    });
 
-    return (
-        <main
-            ref={ref}
-            className='bg-ivory min-h-screen'>
-            {children}
-        </main>
-    )
+    return () => {
+      document.removeEventListener("wheel", handleWheelOnExcluded, {
+        capture: true,
+      });
+      locomotiveScroll?.destroy();
+    };
+  }, []);
+
+  return (
+    <main ref={ref} className="bg-ivory min-h-screen">
+      {children}
+    </main>
+  );
 }
 
-export default SmoothScroll
+export default SmoothScroll;

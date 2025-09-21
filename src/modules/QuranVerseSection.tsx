@@ -10,8 +10,8 @@ export default function QuranVerseSection({ className = "" }: QuranVerseSectionP
   return (
     <section className={`py-20 px-6 text-center bg-white ${className}`}>
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true, margin: "-100px" }}
         className="max-w-2xl mx-auto"

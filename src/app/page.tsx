@@ -11,7 +11,6 @@ import BismillahSection from "~/modules/BismillahSection";
 import ClosingSection from "~/modules/ClosingSection";
 import CoupleSection from "~/modules/CoupleSection";
 import Footer from "~/modules/Footer";
-import GallerySection from "~/modules/GallerySection";
 import GreetingFormSection from "~/modules/GreetingFormSection";
 import HeaderSection from "~/modules/HeaderSection";
 import LocationSection from "~/modules/LocationSection";
@@ -29,6 +28,7 @@ function HomeContent() {
   const [showInvitation, setShowInvitation] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const openingRef = useRef<HTMLElement>(null);
   useEffect(() => {
     // Initialize audio
     if (typeof window !== "undefined") {
@@ -80,10 +80,10 @@ function HomeContent() {
       }
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [isPlaying, audioLoaded]);
 
@@ -108,7 +108,43 @@ function HomeContent() {
       }
     }
   };
+  const smoothScrollTo = (element: HTMLElement, duration = 2000) => {
+    const targetPosition = element.offsetTop;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime: number | null = null;
 
+    const animation = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    };
+
+    // Easing function untuk smooth animation
+    const easeInOutQuad = (t: number, b: number, c: number, d: number) => {
+      const progress = t / d;
+      const easedProgress =
+        progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      return b + c * easedProgress;
+    };
+
+    requestAnimationFrame(animation);
+  };
+  useEffect(() => {
+    if (showInvitation && openingRef.current) {
+      const timer = setTimeout(() => {
+        if (openingRef.current) {
+          smoothScrollTo(openingRef.current, 2000);
+        }
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showInvitation]);
   const openInvitation = () => {
     setShowInvitation(true);
 
@@ -126,16 +162,7 @@ function HomeContent() {
           });
       }
     }
-
-    // Scroll to the first section
-    setTimeout(() => {
-      window.scrollTo({
-        top: window.innerHeight,
-        behavior: "smooth",
-      });
-    }, 1000);
   };
-
 
   if (!showInvitation) {
     return (
@@ -248,7 +275,7 @@ function HomeContent() {
       <HeaderSection />
 
       {/* Bismillah Section */}
-      <BismillahSection />
+      <BismillahSection ref={openingRef} />
 
       {/* Couple Section */}
       <CoupleSection />
@@ -263,7 +290,7 @@ function HomeContent() {
       <LocationSection />
 
       {/* Gallery Section */}
-      <GallerySection />
+      {/* <GallerySection /> */}
 
       {/* Greeting Form Section */}
       <GreetingFormSection />

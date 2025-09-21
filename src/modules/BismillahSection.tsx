@@ -3,11 +3,12 @@ import { motion } from "motion/react";
 
 interface BismillahSectionProps {
   className?: string;
+  ref?: React.Ref<HTMLElement>;
 }
 
-export default function BismillahSection({ className = "" }: BismillahSectionProps) {
+export default function BismillahSection({ className = "", ref }: BismillahSectionProps) {
   return (
-    <section className={`py-12 px-6 text-center bg-white ${className}`}>
+    <section className={`py-12 px-6 text-center bg-white ${className}`} ref={ref}>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

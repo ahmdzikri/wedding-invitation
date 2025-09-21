@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import Image from "next/image";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface HeaderSectionProps {
   className?: string;
@@ -60,25 +61,20 @@ export default function HeaderSection({ className = "" }: HeaderSectionProps) {
           className="mt-8"
         >
           <div className="animate-bounce mt-16">
-            <svg
+            {/* Desktop: ChevronDown, Mobile/Tablet: ChevronUp */}
+            <ChevronDown 
+              className="mx-auto text-[#C4A77D] hidden md:block" 
+              size={24}
               aria-label="Scroll down indicator"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mx-auto text-[#C4A77D]"
-            >
-              <title>Scroll Down</title>
-              <path d="M12 5v14" />
-              <path d="m19 12-7 7-7-7" />
-            </svg>
+            />
+            <ChevronUp 
+              className="mx-auto text-[#C4A77D] md:hidden" 
+              size={24}
+              aria-label="Swipe up indicator"
+            />
             <p className="text-xs text-[#C4A77D] mt-2 tracking-widest">
-              SCROLL
+              <span className="hidden md:inline">SCROLL</span>
+              <span className="md:hidden">SWIPE</span>
             </p>
           </div>
         </motion.div>

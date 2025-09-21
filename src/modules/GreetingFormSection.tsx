@@ -53,130 +53,140 @@ export default function GreetingFormSection({
     }
   };
   return (
-    <section className={`py-20 px-6 text-center bg-white ${className}`}>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="mb-12 max-w-4xl mx-auto"
-      >
-        <p className="text-sm text-[#C4A77D] tracking-widest uppercase mb-4">
-          Ucapan & Doa
-        </p>
-        <h2 className="text-2xl font-serif text-[#8E7151] mb-8">
-          Berikan Ucapan & Doa Restu
-        </h2>
-      </motion.div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+    <section className={`py-20 px-6 text-center bg-[#F9F3E9] ${className}`}>
+      <div className="p-6 rounded-md shadow-sm bg-white">
         <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="bg-[#F9F3E9] p-6 rounded-md shadow-sm"
+          className="mb-12 max-w-4xl mx-auto"
         >
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-left text-sm font-medium text-[#8E7151] mb-1"
+          <p className="text-sm text-[#C4A77D] tracking-widest uppercase mb-4">
+            Ucapan & Doa
+          </p>
+          <h2 className="text-2xl font-serif text-[#8E7151] mb-8">
+            Berikan Ucapan & Doa Restu
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="bg-[#F9F3E9] p-6 rounded-md shadow-sm"
+          >
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-left text-sm font-medium text-[#8E7151] mb-1"
+                >
+                  Nama
+                </label>
+                <Input
+                  id="name"
+                  value={greetingName}
+                  onChange={(e) => setGreetingName(e.target.value)}
+                  className="border-[#E8D4B9] focus-visible:ring-[#C4A77D] bg-white"
+                  placeholder="Nama Anda"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-left text-sm font-medium text-[#8E7151] mb-1"
+                >
+                  Ucapan & Doa
+                </label>
+                <Textarea
+                  id="message"
+                  value={greetingMessage}
+                  onChange={(e) => setGreetingMessage(e.target.value)}
+                  className="border-[#E8D4B9] focus-visible:ring-[#C4A77D] min-h-32 bg-white"
+                  placeholder="Tulis ucapan dan doa Anda untuk kedua mempelai"
+                  required
+                />
+              </div>
+              <Button
+                type="submit"
+                className="w-full bg-[#C4A77D] hover:bg-[#B39B74] text-white"
+                disabled={submitting}
               >
-                Nama
-              </label>
-              <Input
-                id="name"
-                value={greetingName}
-                onChange={(e) => setGreetingName(e.target.value)}
-                className="border-[#E8D4B9] focus-visible:ring-[#C4A77D] bg-white"
-                placeholder="Nama Anda"
-                required
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-left text-sm font-medium text-[#8E7151] mb-1"
-              >
-                Ucapan & Doa
-              </label>
-              <Textarea
-                id="message"
-                value={greetingMessage}
-                onChange={(e) => setGreetingMessage(e.target.value)}
-                className="border-[#E8D4B9] focus-visible:ring-[#C4A77D] min-h-32 bg-white"
-                placeholder="Tulis ucapan dan doa Anda untuk kedua mempelai"
-                required
-              />
-            </div>
-            <Button
-              type="submit"
-              className="w-full bg-[#C4A77D] hover:bg-[#B39B74] text-white"
-              disabled={submitting}
+                {submitting ? (
+                  <span className="flex items-center">
+                    <LoadingSpin color="white" className="mr-2 h-4 w-4" />
+                    Mengirim...
+                  </span>
+                ) : (
+                  <span className="flex items-center">
+                    <Send className="mr-2 h-4 w-4" /> Kirim Ucapan
+                  </span>
+                )}
+              </Button>
+            </form>
+          </motion.div>
+
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="bg-[#F9F3E9] p-6 rounded-md shadow-sm"
+          >
+            <h3 className="text-xl font-serif text-[#8E7151] mb-4">
+              Ucapan yang Diterima
+            </h3>
+
+            <ScrollArea
+              className="h-80"
+              data-scroll-section="false"
+              data-scroll="false"
             >
-              {submitting ? (
-                <span className="flex items-center">
-                  <LoadingSpin color="white" className="mr-2 h-4 w-4" />
-                  Mengirim...
-                </span>
+              {isLoadingGreetings ? (
+                <div className="flex items-center justify-center py-8">
+                  <LoadingSpin />
+                  <span className="ml-2 text-[#8E7151]">Memuat ucapan...</span>
+                </div>
+              ) : greetings.length === 0 ? (
+                <p className="text-[#8E7151] italic">
+                  Belum ada ucapan. Jadilah yang pertama memberikan ucapan.
+                </p>
               ) : (
-                <span className="flex items-center">
-                  <Send className="mr-2 h-4 w-4" /> Kirim Ucapan
-                </span>
+                <div className="space-y-4 pr-4">
+                  {greetings
+                    .sort((a, b) => b.timestamp.localeCompare(a.timestamp))
+                    .map((greeting, index) => (
+                      <div
+                        key={`${greeting.timestamp}-${index}`}
+                        className="border-b border-[#E8D4B9] pb-4 text-left"
+                      >
+                        <p className="font-medium text-[#8E7151]">
+                          {greeting.name}
+                        </p>
+                        <p className="text-[#8E7151]">{greeting.message}</p>
+                        <p className="text-xs text-[#C4A77D] mt-1">
+                          {new Date(greeting.timestamp)
+                            .toLocaleDateString("id-ID", {
+                              day: "2-digit",
+                              month: "short",
+                              year: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: false,
+                            })
+                            .replace(/,/, ", ")}
+                        </p>
+                      </div>
+                    ))}
+                </div>
               )}
-            </Button>
-          </form>
-        </motion.div>
-
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="bg-[#F9F3E9] p-6 rounded-md shadow-sm"
-        >
-          <h3 className="text-xl font-serif text-[#8E7151] mb-4">
-            Ucapan yang Diterima
-          </h3>
-
-          <ScrollArea className="h-80" data-scroll-section="false">
-            {isLoadingGreetings ? (
-              <div className="flex items-center justify-center py-8">
-                <LoadingSpin />
-                <span className="ml-2 text-[#8E7151]">Memuat ucapan...</span>
-              </div>
-            ) : greetings.length === 0 ? (
-              <p className="text-[#8E7151] italic">
-                Belum ada ucapan. Jadilah yang pertama memberikan ucapan.
-              </p>
-            ) : (
-              <div className="space-y-4 pr-4">
-                {greetings.map((greeting, index) => (
-                  <div
-                    key={`${greeting.timestamp}-${index}`}
-                    className="border-b border-[#E8D4B9] pb-4 text-left"
-                  >
-                    <p className="font-medium text-[#8E7151]">{greeting.name}</p>
-                    <p className="text-[#8E7151]">{greeting.message}</p>
-                    <p className="text-xs text-[#C4A77D] mt-1">
-                      {new Date(greeting.timestamp)
-                        .toLocaleDateString("id-ID", {
-                          day: "2-digit",
-                          month: "short",
-                          year: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                          hour12: false,
-                        })
-                        .replace(/,/, ", ")}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </ScrollArea>
-        </motion.div>
+            </ScrollArea>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

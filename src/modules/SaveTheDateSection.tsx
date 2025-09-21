@@ -1,14 +1,40 @@
 "use client";
-import { Calendar } from "lucide-react";
+import { Calendar, CalendarPlus } from "lucide-react";
 import { motion } from "motion/react";
+import { CountdownTimer } from "~/components/CountdownTimer";
+import { Button } from "~/components/ui/button";
+import { generateGoogleCalendarUrl } from "~/lib/utils";
 
 interface SaveTheDateSectionProps {
   className?: string;
 }
 
-export default function SaveTheDateSection({ className = "" }: SaveTheDateSectionProps) {
+export default function SaveTheDateSection({
+  className = "",
+}: SaveTheDateSectionProps) {
+  const handleAddToCalendar = (eventType: 'akad' | 'resepsi') => {
+    const events = {
+      akad: {
+        title: 'Akad Nikah - Nisa & Reza',
+        startDate: '20250615T080000',
+        endDate: '20250615T100000',
+        location: 'Masjid Al-Hidayah, Jl. Pernikahan No. 123, Jakarta Selatan',
+        description: 'Akad Nikah Nisa & Reza'
+      },
+      resepsi: {
+        title: 'Resepsi - Nisa & Reza',
+        startDate: '20250615T110000',
+        endDate: '20250615T150000',
+        location: 'Ballroom Grand Hotel, Jl. Pernikahan No. 123, Jakarta Selatan',
+        description: 'Resepsi Pernikahan Nisa & Reza'
+      }
+    };
+
+    const calendarUrl = generateGoogleCalendarUrl(events[eventType]);
+    window.open(calendarUrl, '_blank');
+  };
   return (
-    <section className={`py-20 px-6 text-center bg-[#F9F3E9] ${className}`}>
+    <section className={`py-20 px-4 text-center bg-[#F9F3E9] ${className}`}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -16,6 +42,7 @@ export default function SaveTheDateSection({ className = "" }: SaveTheDateSectio
         viewport={{ once: true, margin: "-100px" }}
         className="mb-12 max-w-4xl mx-auto"
       >
+        <CountdownTimer targetLocal="2025-12-21T08:00" timeZone="Asia/Jakarta" />
         <p className="text-sm text-[#C4A77D] tracking-widest uppercase mb-4">
           Save the Date
         </p>
@@ -35,9 +62,7 @@ export default function SaveTheDateSection({ className = "" }: SaveTheDateSectio
           <div className="flex items-center justify-center mb-4">
             <Calendar className="h-8 w-8 text-[#C4A77D] mr-2" />
           </div>
-          <h3 className="text-xl font-serif text-[#8E7151] mb-2">
-            Akad Nikah
-          </h3>
+          <h3 className="text-xl font-serif text-[#8E7151] mb-2">Akad Nikah</h3>
           <div className="space-y-1 mb-4">
             <p className="text-[#8E7151]">Sabtu, 15 Juni 2025</p>
             <p className="text-[#8E7151]">08:00 - 10:00 WIB</p>
@@ -46,6 +71,15 @@ export default function SaveTheDateSection({ className = "" }: SaveTheDateSectio
             <p className="text-[#8E7151]">Masjid Al-Hidayah</p>
             <p className="text-[#8E7151]">Jl. Pernikahan No. 123</p>
             <p className="text-[#8E7151]">Jakarta Selatan</p>
+          </div>
+          <div className="mt-4">
+            <Button
+              onClick={() => handleAddToCalendar('akad')}
+              className="bg-[#C4A77D] hover:bg-[#B39B74] text-white px-4 py-2 rounded-md text-sm flex items-center gap-2 mx-auto"
+            >
+              <CalendarPlus className="h-4 w-4" />
+              Add to Calendar
+            </Button>
           </div>
         </motion.div>
 
@@ -69,12 +103,21 @@ export default function SaveTheDateSection({ className = "" }: SaveTheDateSectio
             <p className="text-[#8E7151]">Jl. Pernikahan No. 123</p>
             <p className="text-[#8E7151]">Jakarta Selatan</p>
           </div>
+          <div className="mt-4">
+            <Button
+              onClick={() => handleAddToCalendar('resepsi')}
+              className="bg-[#C4A77D] hover:bg-[#B39B74] text-white px-4 py-2 rounded-md text-sm flex items-center gap-2 mx-auto"
+            >
+              <CalendarPlus className="h-4 w-4" />
+              Add to Calendar
+            </Button>
+          </div>
         </motion.div>
       </div>
 
       <motion.div
-        initial={{ y: 30, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
+         initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.4, duration: 0.8 }}
         viewport={{ once: true, margin: "-100px" }}
         className="mt-12 max-w-md mx-auto text-center"
