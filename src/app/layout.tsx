@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from "next";
 import { Amiri, Arima, Geist, Geist_Mono, Great_Vibes } from "next/font/google";
 import QueryProvider from "~/components/QueryProvider";
@@ -47,6 +48,8 @@ export default function RootLayout({
         <QueryProvider>
           <Toaster />
           {children}
+          <SpeedInsights />
+
         </QueryProvider>
       </body>
     </html>
