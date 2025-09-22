@@ -1,12 +1,14 @@
 "use client";
 import { motion } from "motion/react";
 import Image from "next/image";
+import { getGalleryData } from "~/lib/wedding-functions";
 
 interface GallerySectionProps {
   className?: string;
 }
 
 export default function GallerySection({ className = "" }: GallerySectionProps) {
+  const data = getGalleryData();
   return (
     <section className={`py-20 px-6 text-center bg-[#F9F3E9] ${className}`}>
       <motion.div
@@ -35,8 +37,8 @@ export default function GallerySection({ className = "" }: GallerySectionProps) 
             className="aspect-square overflow-hidden rounded-md shadow-sm"
           >
             <Image
-              src={`/placeholder.svg?height=300&width=300&text=Photo ${i}`}
-              alt={`Foto pasangan ${i}`}
+              src={data.photos[i - 1].src}
+              alt={data.photos[i - 1].alt}
               width={300}
               height={300}
               className="object-cover w-full h-full hover:scale-110 transition-transform duration-500"

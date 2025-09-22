@@ -1,13 +1,15 @@
 "use client";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { formatHeaderDate, getCoupleData } from "~/lib/wedding-functions";
 
 interface HeaderSectionProps {
   className?: string;
 }
 
 export default function HeaderSection({ className = "" }: HeaderSectionProps) {
+  const data = getCoupleData();
   return (
     <section className={`h-dvh flex flex-col items-center justify-center text-center px-6 relative ${className}`}>
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -47,10 +49,10 @@ export default function HeaderSection({ className = "" }: HeaderSectionProps) {
           className="mb-8"
         >
           <h1 className="text-6xl font-great-vibes text-[#8E7151] mb-2">
-            Nisa & Reza
+            {data.bride.nickname} & {data.groom.nickname}
           </h1>
           <p className="text-[#C4A77D] text-lg tracking-widest">
-            15 • 05 • 2025
+            {formatHeaderDate()}
           </p>
         </motion.div>
 

@@ -7,7 +7,7 @@ interface FooterProps {
 
 export default function Footer({ className = "" }: FooterProps) {
   return (
-    <footer className={`py-8 px-6 text-center bg-white ${className}`}>
+    <footer className={`py-4 px-2 text-center bg-white ${className}`}>
       <p className="text-[#C4A77D] text-sm">
         Made with <Heart className="inline-block h-4 w-4 text-[#C4A77D]" /> by
         Ziuci

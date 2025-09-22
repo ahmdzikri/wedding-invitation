@@ -1,12 +1,14 @@
 "use client";
 import { motion } from "motion/react";
 import Image from "next/image";
+import { getCoupleData } from "~/lib/wedding-functions";
 
 interface CoupleSectionProps {
   className?: string;
 }
 
 export default function CoupleSection({ className = "" }: CoupleSectionProps) {
+  const data = getCoupleData();
   return (
     <section className={`py-20 px-6 text-center bg-[#F9F3E9] h-[100dvh] ${className}`}>
       <div className="max-w-4xl mx-auto">
@@ -40,10 +42,10 @@ export default function CoupleSection({ className = "" }: CoupleSectionProps) {
               />
             </div>
             <h3 className="text-2xl font-serif text-[#8E7151] mb-2">
-              Rina Sari, S.Kom
+              {data.bride.fullName}
             </h3>
             <p className="text-[#C4A77D] mb-4 text-sm">Putri dari</p>
-            <p className="text-[#8E7151]">Bapak Hendra & Ibu Sinta</p>
+            <p className="text-[#8E7151]">`Bapak {data.bride.parents.father} & Ibu {data.bride.parents.mother}`</p>
           </motion.div>
 
           <motion.div
@@ -63,10 +65,10 @@ export default function CoupleSection({ className = "" }: CoupleSectionProps) {
               />
             </div>
             <h3 className="text-2xl font-serif text-[#8E7151] mb-2">
-              Dimas Prayoga, S.T
+              {data.groom.fullName}
             </h3>
             <p className="text-[#C4A77D] mb-4 text-sm">Putra dari</p>
-            <p className="text-[#8E7151]">Bapak Budi & Ibu Wati</p>
+            <p className="text-[#8E7151]">`Bapak {data.groom.parents.father} & Ibu {data.groom.parents.mother}`</p>
           </motion.div>
         </div>
       </div>

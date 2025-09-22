@@ -187,6 +187,37 @@ export default function GreetingFormSection({
             </ScrollArea>
           </motion.div>
         </div>
+        <motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="mt-12 max-w-4xl mx-auto"
+        >
+          <div className="text-center space-y-4">
+            {/* Quote dalam Bahasa Minangkabau */}
+            <blockquote className="text-[#8E7151] text-lg italic font-serif leading-relaxed border-l-4 border-[#C4A77D] pl-6 bg-[#F9F3E9]/30 py-4 rounded-r-lg">
+              "Bak umpamo biduak kabalayia… Lauik lapeh jo ríak nan ka di hadang…
+              Taguah-taguah pacik kamudi… Ingek di riak jo galombang… Ingek dek
+              karang kamaonggoh… Ingek dek ombak kamaampeh… Pandai-pandai manjago
+              diri… Binalah kaluarga sakinah mawaddah warrahmah… Do'a mande
+              sapanjang jalan…"
+            </blockquote>
+            
+            {/* Terjemahan dalam Bahasa Indonesia */}
+            <div className="text-[#A0896B] text-sm leading-relaxed mt-4 px-6">
+              <p className="italic">
+                "Seperti perahu yang berlayar… Laut luas dengan ombak yang menghadang…
+                Pegang erat kemudi… Ingat pada ombak dan gelombang… Ingat pada karang yang mengancam…
+                Ingat pada ombak yang menghempas… Pandai-pandailah menjaga diri…
+                Bangunlah keluarga sakinah mawaddah warrahmah… Doa ibu sepanjang jalan…"
+              </p>
+              <p className="text-xs text-[#C4A77D] mt-2 font-medium">
+                — Petuah Minangkabau
+              </p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
