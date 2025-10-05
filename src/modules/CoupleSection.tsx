@@ -11,7 +11,7 @@ export default function CoupleSection({ className = "" }: CoupleSectionProps) {
   const data = getCoupleData();
   return (
     <section
-      className={`py-20 px-6 text-center bg-[#F9F3E9] h-[100dvh] ${className}`}
+      className={`py-20 px-6 text-center bg-[#F9F3E9] ${className}`}
     >
       <motion.div
         initial={{ opacity: 0, y: 50 }}

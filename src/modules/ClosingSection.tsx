@@ -1,12 +1,14 @@
 "use client";
 import { motion } from "motion/react";
 import Image from "next/image";
+import { getCoupleData } from "~/lib/wedding-functions";
 
 interface ClosingSectionProps {
   className?: string;
 }
 
 export default function ClosingSection({ className = "" }: ClosingSectionProps) {
+  const data = getCoupleData();
   return (
     <section className={`py-20 px-6 text-center bg-[#F9F3E9] ${className}`}>
       <motion.div
@@ -41,7 +43,9 @@ export default function ClosingSection({ className = "" }: ClosingSectionProps) 
           Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
           Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
         </p>
-        <p className="text-xl font-serif text-[#8E7151] mb-8">Rina & Dimas</p>
+        <p className="text-xl font-serif text-[#8E7151] mb-8">
+          {data.bride.nickname} & {data.groom.nickname}
+        </p>
 
         <div className="mt-8 pt-8 border-t border-[#E8D4B9]">
           <p className="text-[#8E7151] italic">
