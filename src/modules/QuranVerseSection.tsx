@@ -1,14 +1,19 @@
 "use client";
 import { motion } from "motion/react";
 import Image from "next/image";
+import { CountdownTimer } from "~/components/CountdownTimer";
+import { getCountdownData, getEventDateTime } from "~/lib/wedding-functions";
 
 interface QuranVerseSectionProps {
   className?: string;
+  ref?: React.Ref<HTMLElement>;
 }
 
-export default function QuranVerseSection({ className = "" }: QuranVerseSectionProps) {
+export default function QuranVerseSection({
+  className = "", ref }: QuranVerseSectionProps) {
+  const countdown = getCountdownData();
   return (
-    <section className={`py-20 px-6 text-center bg-white ${className}`}>
+    <section className={`py-20 px-6 text-center bg-white ${className}`} ref={ref}>
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -16,18 +21,22 @@ export default function QuranVerseSection({ className = "" }: QuranVerseSectionP
         viewport={{ once: true, margin: "-100px" }}
         className="max-w-2xl mx-auto"
       >
-        <div className="mb-8">
-          <div className="w-16 h-16 mx-auto mb-4 relative">
-            <Image
-              src="/placeholder.svg?height=64&width=64"
-              alt="Ornament"
-              width={64}
-              height={64}
-              className="object-contain"
-            />
-          </div>
+        <div className="mb-8 items-center justify-center flex">
+          <Image
+            src="/Rumah-Minang.png"
+            alt="Ornament"
+            width={140}
+            height={104}
+            className="object-contain"
+          />
         </div>
-
+        <CountdownTimer
+          targetLocal={getEventDateTime({
+            date: countdown.targetDate,
+            time: countdown.targetTime,
+          })}
+          timeZone={countdown.timeZone}
+        />
         <div className="bg-[#F9F3E9] p-8 rounded-md">
           <p className="text-xl font-amiri text-[#8E7151] mb-6 leading-loose">
             وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا

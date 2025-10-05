@@ -1,16 +1,13 @@
 "use client";
-import { Calendar, CalendarPlus, Heart, Flower2 } from "lucide-react";
+import { CalendarPlus, Flower2, Heart } from "lucide-react";
 import { motion } from "motion/react";
-import { CountdownTimer } from "~/components/CountdownTimer";
 import { Button } from "~/components/ui/button";
 import { generateGoogleCalendarUrl } from "~/lib/utils";
 import {
   formatWeddingDate,
   formatWeddingTime,
-  getCountdownData,
   getCoupleData,
-  getEventDateTime,
-  getEventsData,
+  getEventsData
 } from "~/lib/wedding-functions";
 
 interface SaveTheDateSectionProps {
@@ -23,7 +20,6 @@ export default function SaveTheDateSection({
   // Get dynamic data from JSON
   const events = getEventsData();
   const couple = getCoupleData();
-  const countdown = getCountdownData();
 
   const handleAddToCalendar = (eventType: "akad" | "resepsi") => {
     const eventData = events[eventType];
@@ -78,16 +74,6 @@ export default function SaveTheDateSection({
         viewport={{ once: true, margin: "-100px" }}
         className="mb-12 max-w-4xl mx-auto"
       >
-        <CountdownTimer
-          targetLocal={getEventDateTime({
-            date: countdown.targetDate,
-            time: countdown.targetTime,
-          })}
-          timeZone={countdown.timeZone}
-        />
-        <p className="text-sm text-[#C4A77D] tracking-widest uppercase mb-4">
-          Save the Date
-        </p>
         <h2 className="text-2xl font-serif text-[#8E7151] mb-8">
           Insya Allah akan diselenggarakan pada:
         </h2>
@@ -105,7 +91,9 @@ export default function SaveTheDateSection({
           <div className="flex items-center justify-center mb-6">
             <Heart className="h-12 w-12 text-[#C4A77D] mr-2" />
           </div>
-          <h3 className="text-2xl font-serif text-[#8E7151] mb-2 text-center">Akad Nikah</h3>
+          <h3 className="text-2xl font-serif text-[#8E7151] mb-2 text-center">
+            Akad Nikah
+          </h3>
           <div className="space-y-2 mb-6 text-center">
             <p className="text-lg text-[#8E7151] font-medium">
               {formatWeddingDate(events.akad.date)}
@@ -143,7 +131,9 @@ export default function SaveTheDateSection({
           <div className="flex items-center justify-center mb-6">
             <Flower2 className="h-12 w-12 text-[#C4A77D] mr-2" />
           </div>
-          <h3 className="text-2xl font-serif text-[#8E7151] mb-2 text-center">Resepsi</h3>
+          <h3 className="text-2xl font-serif text-[#8E7151] mb-2 text-center">
+            Resepsi
+          </h3>
           <div className="space-y-2 mb-6 text-center">
             <p className="text-lg text-[#8E7151] font-medium">
               {formatWeddingDate(events.resepsi.date)}

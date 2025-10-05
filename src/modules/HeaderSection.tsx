@@ -48,7 +48,7 @@ export default function HeaderSection({ className = "" }: HeaderSectionProps) {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="mb-8"
         >
-          <h1 className="text-6xl font-great-vibes text-[#8E7151] mb-2">
+          <h1 className="text-7xl font-tangerine font-bold text-[#8E7151] mb-2">
             {data.bride.nickname} & {data.groom.nickname}
           </h1>
           <p className="text-[#C4A77D] text-lg tracking-widest">

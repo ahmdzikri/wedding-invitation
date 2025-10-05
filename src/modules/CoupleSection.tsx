@@ -10,20 +10,28 @@ interface CoupleSectionProps {
 export default function CoupleSection({ className = "" }: CoupleSectionProps) {
   const data = getCoupleData();
   return (
-    <section className={`py-20 px-6 text-center bg-[#F9F3E9] h-[100dvh] ${className}`}>
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="mb-16"
-        >
-          <p className="text-sm text-[#C4A77D] tracking-widest uppercase mb-4">
-            Mempelai
-          </p>
-        </motion.div>
-
+    <section
+      className={`py-20 px-6 text-center bg-[#F9F3E9] h-[100dvh] ${className}`}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-2xl mx-auto"
+      >
+        <h2 className="text-3xl font-amiri text-[#8E7151] mb-8">
+          بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
+        </h2>
+        <p className="text-sm text-[#C4A77D] tracking-widest uppercase mb-4">
+          Bismillahirrahmanirrahim
+        </p>
+        <p className="text-[#8E7151] mb-6 max-w-md mx-auto">
+          Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta'ala, kami
+          bermaksud menyelenggarakan pernikahan kami:
+        </p>
+      </motion.div>
+      <div className="max-w-4xl mx-auto mt-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8">
           <motion.div
             initial={{ x: -50, opacity: 0 }}
@@ -45,7 +53,10 @@ export default function CoupleSection({ className = "" }: CoupleSectionProps) {
               {data.bride.fullName}
             </h3>
             <p className="text-[#C4A77D] mb-4 text-sm">Putri dari</p>
-            <p className="text-[#8E7151]">`Bapak {data.bride.parents.father} & Ibu {data.bride.parents.mother}`</p>
+            <p className="text-[#8E7151]">
+              `Bapak {data.bride.parents.father} & Ibu{" "}
+              {data.bride.parents.mother}`
+            </p>
           </motion.div>
 
           <motion.div
@@ -68,7 +79,10 @@ export default function CoupleSection({ className = "" }: CoupleSectionProps) {
               {data.groom.fullName}
             </h3>
             <p className="text-[#C4A77D] mb-4 text-sm">Putra dari</p>
-            <p className="text-[#8E7151]">`Bapak {data.groom.parents.father} & Ibu {data.groom.parents.mother}`</p>
+            <p className="text-[#8E7151]">
+              `Bapak {data.groom.parents.father} & Ibu{" "}
+              {data.groom.parents.mother}`
+            </p>
           </motion.div>
         </div>
       </div>

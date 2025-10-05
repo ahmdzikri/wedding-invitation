@@ -8,6 +8,11 @@
   --font-mono: var(--font-geist-mono);
   --font-great-vibes: var(--font-great-vibes);
   --font-amiri: var(--font-amiri);
+  --font-be-vietnam-pro: var(--font-be-vietnam-pro);
+  --font-hello-paris: 'Hello Paris', serif;
+  --font-hello-paris-script: 'Hello Paris Script', cursive;
+  --font-hello-paris-extra: 'Hello Paris Extra', serif;
+  --font-tangerine: var(--font-tangerine);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -47,71 +52,73 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: oklch(0.8705 0.0499 73.0430);
+  --foreground: oklch(0.3200 0.1162 12.4970);
+  --card: oklch(0.8705 0.0499 73.0430);
+  --card-foreground: oklch(0.3200 0.1162 12.4970);
+  --popover: oklch(0.8705 0.0499 73.0430);
+  --popover-foreground: oklch(0.3200 0.1162 12.4970);
+  --primary: oklch(0.3200 0.1162 12.4970);
+  --primary-foreground: oklch(0.8705 0.0499 73.0430);
+  --secondary: oklch(0.8008 0.0532 71.6841);
+  --secondary-foreground: oklch(0.3200 0.1162 12.4970);
+  --muted: oklch(0.9370 0.0256 73.1800);
+  --muted-foreground: oklch(0.3954 0.1383 10.0789);
+  --accent: oklch(0.3200 0.1162 12.4970);
+  --accent-foreground: oklch(0.8705 0.0499 73.0430);
+  --destructive: oklch(0.3954 0.1383 10.0789);
+  --destructive-foreground: oklch(0.8705 0.0499 73.0430);
+  --border: oklch(0.7976 0.0438 77.5517);
+  --input: oklch(0.8008 0.0532 71.6841);
+  --ring: oklch(0.3200 0.1162 12.4970);
+  --chart-1: oklch(0.3200 0.1162 12.4970);
+  --chart-2: oklch(0.8008 0.0532 71.6841);
+  --chart-3: oklch(0.5051 0.1097 64.3604);
+  --chart-4: oklch(0.7976 0.0438 77.5517);
+  --chart-5: oklch(0.6016 0.1051 77.9580);
+  --sidebar: oklch(0.8705 0.0499 73.0430);
+  --sidebar-foreground: oklch(0.3200 0.1162 12.4970);
+  --sidebar-primary: oklch(0.3200 0.1162 12.4970);
+  --sidebar-primary-foreground: oklch(0.8705 0.0499 73.0430);
+  --sidebar-accent: oklch(0.3954 0.1383 10.0789);
+  --sidebar-accent-foreground: oklch(0.8705 0.0499 73.0430);
+  --sidebar-border: oklch(0.7976 0.0438 77.5517);
+  --sidebar-ring: oklch(0.3200 0.1162 12.4970);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: oklch(0.3200 0.1162 12.4970);
+  --foreground: oklch(0.8705 0.0499 73.0430);
+  --card: oklch(0.3200 0.1162 12.4970);
+  --card-foreground: oklch(0.8705 0.0499 73.0430);
+  --popover: oklch(0.3200 0.1162 12.4970);
+  --popover-foreground: oklch(0.8705 0.0499 73.0430);
+  --primary: oklch(0.8705 0.0499 73.0430);
+  --primary-foreground: oklch(0.3200 0.1162 12.4970);
+  --secondary: oklch(0.3954 0.1383 10.0789);
+  --secondary-foreground: oklch(0.8705 0.0499 73.0430);
+  --muted: oklch(0.4336 0.1375 8.7792);
+  --muted-foreground: oklch(0.9370 0.0256 73.1800);
+  --accent: oklch(0.8705 0.0499 73.0430);
+  --accent-foreground: oklch(0.3200 0.1162 12.4970);
+  --destructive: oklch(0.9370 0.0256 73.1800);
+  --destructive-foreground: oklch(0.3200 0.1162 12.4970);
+  --border: oklch(0.7976 0.0438 77.5517);
+  --input: oklch(0.3954 0.1383 10.0789);
+  --ring: oklch(0.8705 0.0499 73.0430);
+  --chart-1: oklch(0.8705 0.0499 73.0430);
+  --chart-2: oklch(0.3200 0.1162 12.4970);
+  --chart-3: oklch(0.8008 0.0532 71.6841);
+  --chart-4: oklch(0.4336 0.1375 8.7792);
+  --chart-5: oklch(0.7976 0.0438 77.5517);
+  --sidebar: oklch(0.3200 0.1162 12.4970);
+  --sidebar-foreground: oklch(0.8705 0.0499 73.0430);
+  --sidebar-primary: oklch(0.8705 0.0499 73.0430);
+  --sidebar-primary-foreground: oklch(0.3200 0.1162 12.4970);
+  --sidebar-accent: oklch(0.9370 0.0256 73.1800);
+  --sidebar-accent-foreground: oklch(0.3200 0.1162 12.4970);
+  --sidebar-border: oklch(0.7976 0.0438 77.5517);
+  --sidebar-ring: oklch(0.8705 0.0499 73.0430);
 }
 
 @layer base {
@@ -122,6 +129,86 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Hello Paris Font Family */
+@font-face {
+    font-family: 'Hello Paris';
+    src: url('/Hello-Paris-Font-Family/HelloParisSerif-Medium.eot');
+    src: local('Hello Paris Medium'), local('HelloParisSerif-Medium'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Medium.eot?#iefix') format('embedded-opentype'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Medium.woff2') format('woff2'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Medium.woff') format('woff'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Hello Paris';
+    src: url('/Hello-Paris-Font-Family/HelloParisSerif-Regular.eot');
+    src: local('Hello Paris'), local('HelloParisSerif-Regular'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Regular.eot?#iefix') format('embedded-opentype'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Regular.woff2') format('woff2'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Regular.woff') format('woff'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Hello Paris Extra';
+    src: url('/Hello-Paris-Font-Family/HelloParisSerif-ExtraLight.eot');
+    src: local('Hello Paris Extra Light'), local('HelloParisSerif-ExtraLight'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-ExtraLight.woff2') format('woff2'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-ExtraLight.woff') format('woff'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Hello Paris';
+    src: url('/Hello-Paris-Font-Family/HelloParisSerif-Light.eot');
+    src: local('Hello Paris Light'), local('HelloParisSerif-Light'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Light.eot?#iefix') format('embedded-opentype'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Light.woff2') format('woff2'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Light.woff') format('woff'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Hello Paris';
+    src: url('/Hello-Paris-Font-Family/HelloParisSerif-Bold.eot');
+    src: local('Hello Paris Bold'), local('HelloParisSerif-Bold'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Bold.eot?#iefix') format('embedded-opentype'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Bold.woff2') format('woff2'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Bold.woff') format('woff'),
+        url('/Hello-Paris-Font-Family/HelloParisSerif-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Hello Paris Script';
+    src: url('/Hello-Paris-Font-Family/HelloParisScript.eot');
+    src: local('Hello Paris Script'), local('HelloParisScript'),
+        url('/Hello-Paris-Font-Family/HelloParisScript.eot?#iefix') format('embedded-opentype'),
+        url('/Hello-Paris-Font-Family/HelloParisScript.woff2') format('woff2'),
+        url('/Hello-Paris-Font-Family/HelloParisScript.woff') format('woff'),
+        url('/Hello-Paris-Font-Family/HelloParisScript.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 @layer utilities {
   @keyframes zoom-out {
     0% {

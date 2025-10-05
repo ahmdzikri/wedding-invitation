@@ -7,7 +7,11 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
 import SmoothScroll from "~/components/SmoothScroll";
 import { Button } from "~/components/ui/button";
-import BismillahSection from "~/modules/BismillahSection";
+import {
+  formatWeddingDate,
+  getCoupleData,
+  getEventsData,
+} from "~/lib/wedding-functions";
 import ClosingSection from "~/modules/ClosingSection";
 import CoupleSection from "~/modules/CoupleSection";
 import Footer from "~/modules/Footer";
@@ -29,6 +33,9 @@ function HomeContent() {
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const openingRef = useRef<HTMLElement>(null);
+
+  const couple = getCoupleData();
+  const event = getEventsData();
   useEffect(() => {
     // Initialize audio
     if (typeof window !== "undefined") {
@@ -166,51 +173,55 @@ function HomeContent() {
 
   if (!showInvitation) {
     return (
-      <div className="h-dvh w-full bg-[#F9F3E9] flex flex-col items-center justify-center relative overflow-hidden">
+      <div className="h-dvh w-full bg-background flex flex-col items-center justify-center relative overflow-hidden">
+        {/* Background pattern */}
+        <div className="absolute inset-0 bg-[url('/vecteezy_luxury-batik-songket-pattern-frame-border-background_48185867.jpg')] bg-repeat bg-center opacity-4 bg-[length:200px_200px]" />
+
         {/* Decorative elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/placeholder.svg?height=800&width=800')] bg-cover bg-center opacity-10" />
-          <div className="absolute top-0 left-0 w-40 h-40 bg-[#E8D4B9] rounded-full -translate-x-1/2 -translate-y-1/2 opacity-30" />
-          <div className="absolute bottom-0 right-0 w-60 h-60 bg-[#E8D4B9] rounded-full translate-x-1/2 translate-y-1/2 opacity-30" />
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#F5F1E8]/20 via-transparent to-[#E8D4B9]/20" />
+          <div className="absolute top-0 left-0 w-40 h-40 bg-[#D79863] rounded-full -translate-x-1/2 -translate-y-1/2 opacity-30" />
+          <div className="absolute bottom-0 right-0 w-60 h-60 bg-[#D79863] rounded-full translate-x-1/2 translate-y-1/2 opacity-30" />
         </div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="relative z-10 text-center px-6 max-w-md"
+          className="relative z-10 flex flex-col justify-center gap-6 items-center text-center px-6 max-w-md"
         >
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="mb-6"
+            className="flex font-hello-paris mt-[-6rem] flex-auto flex-wrap text-center leading-[14rem]"
           >
-            <p className="text-[#C4A77D] text-sm tracking-widest uppercase mb-2">
-              Undangan Pernikahan
-            </p>
-            <div className="w-20 h-20 mx-auto mb-4 relative">
-              <Image
-                src="/placeholder.svg?height=80&width=80"
-                alt="Wedding ornament"
-                width={80}
-                height={80}
-                className="object-contain"
-              />
-            </div>
+            <h2 className="text-[200px] text-accents ">A</h2>
+            <h2 className="text-[200px] text-accents ">R</h2>
           </motion.div>
-
+          <div className="display-inline-block mx-auto relative">
+            <Image
+              src="/Untitled-1.png"
+              alt="Wedding ornament"
+              width={429}
+              height={27}
+              className="object-cover"
+            />
+          </div>
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="mb-8"
+            className="mt-8"
           >
-            <h1 className="text-6xl font-great-vibes text-[#8E7151] mb-2">
-              Nisa & Reza
+            <p className="text-accents font-be-vietnam-pro text-sm tracking-widest uppercase mb-4">
+              Undangan Pernikahan
+            </p>
+            <h1 className="text-7xl font-tangerine font-bold text-accents mb-2">
+              {couple.bride.nickname} & {couple.groom.nickname}
             </h1>
-            <p className="text-[#C4A77D] text-sm tracking-widest">
-              15 • 06 • 2025
+            <p className="text-accents text-sm tracking-widest">
+              {formatWeddingDate(event.akad.date)}
             </p>
           </motion.div>
 
@@ -218,20 +229,19 @@ function HomeContent() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.8 }}
-            className="mt-8"
+            className="mt-6"
           >
-            <p className="text-[#8E7151] mb-6">
-              Kepada Bapak/Ibu/Saudara/i{" "}
+            <div className="flex flex-col items-center justify-center gap-2 mb-8">
+              <span className="text-accents">
+                Kepada Bapak/Ibu/Saudara/i{" "}
+              </span>
               <span className="font-semibold">{decodedGuestName}</span>
-            </p>
-            <p className="text-[#8E7151] mb-8">
-              Kami mengundang Anda untuk menghadiri acara pernikahan kami
-            </p>
+            </div>
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 onClick={openInvitation}
-                className="bg-[#C4A77D] hover:bg-[#B39B74] text-white px-8 py-6 rounded-md text-sm tracking-wider"
+                className="bg-secondary-foreground hover:bg-secondary-foreground/70 text-white px-8 py-6 rounded-md text-sm tracking-wider"
               >
                 Buka Undangan
               </Button>
@@ -242,7 +252,7 @@ function HomeContent() {
     );
   }
   return (
-    <div className="bg-[#F9F3E9] text-[#8E7151] w-full overflow-x-hidden">
+    <div className="bg-[#F9F3E9] text-accents w-full overflow-x-hidden">
       {/* Floating mute button */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -264,9 +274,9 @@ function HomeContent() {
           }
         >
           {isPlaying ? (
-            <VolumeX className="h-5 w-5 text-[#C4A77D]" />
+            <VolumeX className="h-5 w-5 text-accents" />
           ) : (
-            <Volume2 className="h-5 w-5 text-[#C4A77D]" />
+            <Volume2 className="h-5 w-5 text-accents" />
           )}
         </Button>
       </motion.div>
@@ -274,14 +284,10 @@ function HomeContent() {
       {/* Header Section */}
       <HeaderSection />
 
-      {/* Bismillah Section */}
-      <BismillahSection ref={openingRef} />
-
+      {/* Quran Verse Section */}
+      <QuranVerseSection ref={openingRef} />
       {/* Couple Section */}
       <CoupleSection />
-
-      {/* Quran Verse Section */}
-      <QuranVerseSection />
 
       {/* Save the Date Section */}
       <SaveTheDateSection />

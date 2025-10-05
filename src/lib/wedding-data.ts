@@ -3,16 +3,16 @@ import type { WeddingData } from "~/types/wedding";
 export const weddingDataConfig: WeddingData = {
   couple: {
     bride: {
-      fullName: "Siti Aisyah Rahmawati",
-      nickname: "Aisyah",
+      fullName: "Ainil Khairin Nisa",
+      nickname: "Ainil",
       parents: {
-        father: "H. Ahmad Rahmawan",
-        mother: "Hj. Siti Khadijah"
+        father: "Redison Mhd. Yoes",
+        mother: "Hayatun Nufus"
       }
     },
     groom: {
       fullName: "Muhammad Rizki Pratama",
-      nickname: "Rizki", 
+      nickname: "Reza", 
       parents: {
         father: "H. Bambang Pratama",
         mother: "Hj. Nur Hayati"

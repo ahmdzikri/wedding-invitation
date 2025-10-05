@@ -53,8 +53,8 @@ export default function GreetingFormSection({
     }
   };
   return (
-    <section className={`py-20 px-6 text-center bg-[#F9F3E9] ${className}`}>
-      <div className="p-6 rounded-md shadow-sm bg-white">
+    <section className={`pt-8 pb-20 px-6 text-center bg-[#F9F3E9] ${className}`}>
+      <div className="p-6 rounded-xl shadow-sm bg-white">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -142,7 +142,7 @@ export default function GreetingFormSection({
             </h3>
 
             <ScrollArea
-              className="h-80"
+              className="h-60"
               data-scroll-section="false"
               data-scroll="false"
             >
@@ -196,7 +196,7 @@ export default function GreetingFormSection({
         >
           <div className="text-center space-y-4">
             {/* Quote dalam Bahasa Minangkabau */}
-            <blockquote className="text-[#8E7151] text-lg italic font-serif leading-relaxed border-l-4 border-[#C4A77D] pl-6 bg-[#F9F3E9]/30 py-4 rounded-r-lg">
+            <blockquote className="text-[#8E7151] font-be-vietnam-pro text-sm md:text-md leading-relaxed border-l-4 border-[#C4A77D] px-6 bg-[#F9F3E9]/30 py-4 rounded-r-lg">
               "Bak umpamo biduak kabalayia… Lauik lapeh jo ríak nan ka di hadang…
               Taguah-taguah pacik kamudi… Ingek di riak jo galombang… Ingek dek
               karang kamaonggoh… Ingek dek ombak kamaampeh… Pandai-pandai manjago
@@ -205,7 +205,7 @@ export default function GreetingFormSection({
             </blockquote>
             
             {/* Terjemahan dalam Bahasa Indonesia */}
-            <div className="text-[#A0896B] text-sm leading-relaxed mt-4 px-6">
+            <div className="text-[#A0896B] text-xs md:text-sm leading-relaxed mt-4 px-6">
               <p className="italic">
                 "Seperti perahu yang berlayar… Laut luas dengan ombak yang menghadang…
                 Pegang erat kemudi… Ingat pada ombak dan gelombang… Ingat pada karang yang mengancam…

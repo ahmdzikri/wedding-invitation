@@ -65,7 +65,7 @@ export function CountdownTimer({
         <div className="w-full justify-center flex">
           <div className="flex size-full justify-center">
             <div className="my-1 h-full w-max">
-              <div className="grid grid-cols-4 justify-center gap-x-2">
+              <div className="flex justify-center gap-x-1 md:gap-x-2">
                 <TimerBox
                   value={timeLeft.days}
                   label="hari"
