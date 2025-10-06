@@ -193,8 +193,8 @@ function HomeContent() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="flex font-hello-paris mt-[-6rem] flex-auto flex-wrap text-center leading-[14rem]"
           >
-            <h2 className="text-[200px] text-accents ">A</h2>
-            <h2 className="text-[200px] text-accents ">R</h2>
+            <h2 className="text-[200px] text-accents ">{config.couple.brideName.charAt(0).toUpperCase()}</h2>
+            <h2 className="text-[200px] text-accents ">{config.couple.groomName.charAt(0).toUpperCase()}</h2>
           </motion.div>
           <div className="display-inline-block mx-auto relative">
             <Image
