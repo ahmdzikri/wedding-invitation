@@ -59,7 +59,7 @@ export default function GreetingFormSection({
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
+          
           className="mb-12 max-w-4xl mx-auto"
         >
           <p className="text-sm text-[#C4A77D] tracking-widest uppercase mb-4">
@@ -75,7 +75,7 @@ export default function GreetingFormSection({
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
+            
             className="bg-[#F9F3E9] p-6 rounded-md shadow-sm"
           >
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -134,7 +134,7 @@ export default function GreetingFormSection({
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
+            
             className="bg-[#F9F3E9] p-6 rounded-md shadow-sm"
           >
             <h3 className="text-xl font-serif text-[#8E7151] mb-4">
@@ -191,7 +191,7 @@ export default function GreetingFormSection({
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
+          
           className="mt-12 max-w-4xl mx-auto"
         >
           <div className="text-center space-y-4">

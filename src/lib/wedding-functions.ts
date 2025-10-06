@@ -1,92 +1,10 @@
-import type { WeddingData } from "~/types/wedding";
-import { weddingDataConfig } from "./wedding-data";
-
-/**
- * Get the wedding data from JSON file
- * @returns WeddingData object with all wedding information
- */
-export function getWeddingData(): WeddingData {
-  return weddingDataConfig;
-}
-
-/**
- * Get couple information
- * @returns Couple data with bride and groom details
- */
-export function getCoupleData() {
-  const data = getWeddingData();
-  return data.couple;
-}
-
-/**
- * Get event information (akad and resepsi)
- * @returns Events data with akad and resepsi details
- */
-export function getEventsData() {
-  const data = getWeddingData();
-  return data.events;
-}
-
-/**
- * Get countdown target information
- * @returns Countdown configuration for timer
- */
-export function getCountdownData() {
-  const data = getWeddingData();
-  return data.countdown;
-}
-
-/**
- * Get gallery photos
- * @returns Array of photo objects
- */
-export function getGalleryData() {
-  const data = getWeddingData();
-  return data.gallery;
-}
-
-/**
- * Get Quran verse information
- * @returns Quran verse with Arabic text, translation, and source
- */
-export function getQuranVerseData() {
-  const data = getWeddingData();
-  return data.quranVerse;
-}
-
-/**
- * Get music configuration
- * @returns Music file source and title
- */
-export function getMusicData() {
-  const data = getWeddingData();
-  return data.music;
-}
-
-/**
- * Get contact information
- * @returns Contact details including WhatsApp numbers
- */
-export function getContactData() {
-  const data = getWeddingData();
-  return data.contact;
-}
-
-/**
- * Get theme configuration
- * @returns Theme colors and styling configuration
- */
-export function getThemeData() {
-  const data = getWeddingData();
-  return data.theme;
-}
+import config from "~/config/config";
 
 /**
  * Format date for display (DD • MM • YYYY)
  */
 export function formatHeaderDate() {
-  const data = getEventsData();
-  const date = new Date(data.akad.date);
+  const date = new Date(config.event.date);
   const day = date.getDate().toString().padStart(2, "0");
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
   const year = date.getFullYear();

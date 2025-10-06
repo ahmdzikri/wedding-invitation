@@ -12,7 +12,7 @@ export default function BismillahSection({ className = "" }: BismillahSectionPro
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: "-100px" }}
+        
         className="max-w-2xl mx-auto"
       >
         <h2 className="text-3xl font-amiri text-[#8E7151] mb-8">

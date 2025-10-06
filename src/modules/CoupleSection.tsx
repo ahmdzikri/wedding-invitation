@@ -1,14 +1,14 @@
 "use client";
 import { motion } from "motion/react";
 import Image from "next/image";
-import { getCoupleData } from "~/lib/wedding-functions";
+import config from "~/config/config";
 
 interface CoupleSectionProps {
   className?: string;
 }
 
 export default function CoupleSection({ className = "" }: CoupleSectionProps) {
-  const data = getCoupleData();
+  const couple = config.couple;
   return (
     <section
       className={`py-20 px-6 text-center bg-[#F9F3E9] ${className}`}
@@ -17,7 +17,7 @@ export default function CoupleSection({ className = "" }: CoupleSectionProps) {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: "-100px" }}
+        
         className="max-w-2xl mx-auto"
       >
         <h2 className="text-3xl font-amiri text-[#8E7151] mb-8">
@@ -37,7 +37,7 @@ export default function CoupleSection({ className = "" }: CoupleSectionProps) {
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
+            
             className="flex flex-col items-center"
           >
             <div className="w-40 h-40 rounded-full overflow-hidden mb-6 border-4 border-[#E8D4B9]">
@@ -50,12 +50,11 @@ export default function CoupleSection({ className = "" }: CoupleSectionProps) {
               />
             </div>
             <h3 className="text-2xl font-serif text-[#8E7151] mb-2">
-              {data.bride.fullName}
+              {couple.brideFullname}
             </h3>
-            <p className="text-[#C4A77D] mb-4 text-sm">Putri dari</p>
+            <p className="text-[#C4A77D] mb-2 text-sm">Putri Ke-{couple.bridePosition} dari</p>
             <p className="text-[#8E7151]">
-              `Bapak {data.bride.parents.father} & Ibu{" "}
-              {data.bride.parents.mother}`
+              Bapak {couple.brideFather} & Ibu {couple.brideMother}
             </p>
           </motion.div>
 
@@ -63,7 +62,7 @@ export default function CoupleSection({ className = "" }: CoupleSectionProps) {
             initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
+            
             className="flex flex-col items-center"
           >
             <div className="w-40 h-40 rounded-full overflow-hidden mb-6 border-4 border-[#E8D4B9]">
@@ -76,12 +75,11 @@ export default function CoupleSection({ className = "" }: CoupleSectionProps) {
               />
             </div>
             <h3 className="text-2xl font-serif text-[#8E7151] mb-2">
-              {data.groom.fullName}
+              {couple.groomFullname}
             </h3>
-            <p className="text-[#C4A77D] mb-4 text-sm">Putra dari</p>
+            <p className="text-[#C4A77D] mb-2 text-sm">Putra Ke-{couple.groomPosition} dari</p>
             <p className="text-[#8E7151]">
-              `Bapak {data.groom.parents.father} & Ibu{" "}
-              {data.groom.parents.mother}`
+              Bapak {couple.groomFather} & Ibu {couple.groomMother}
             </p>
           </motion.div>
         </div>

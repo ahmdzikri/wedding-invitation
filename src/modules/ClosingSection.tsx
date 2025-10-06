@@ -1,62 +1,67 @@
 "use client";
 import { motion } from "motion/react";
 import Image from "next/image";
-import { getCoupleData } from "~/lib/wedding-functions";
+import config from "~/config/config";
 
-interface ClosingSectionProps {
-  className?: string;
-}
-
-export default function ClosingSection({ className = "" }: ClosingSectionProps) {
-  const data = getCoupleData();
+export default function ClosingSection() {
+  const data = config.couple;
   return (
-    <section className={`py-20 px-6 text-center bg-[#F9F3E9] ${className}`}>
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="mb-6"
-      >
-        <div className="w-16 h-16 mx-auto mb-4 relative">
-          <Image
-            src="/placeholder.svg?height=64&width=64"
-            alt="Ornament"
-            width={64}
-            height={64}
-            className="object-contain"
-          />
-        </div>
-      </motion.div>
+    <footer
+      className="container-box mt-8 [clip-path:inset(0_round_50px_50px_0_0)]
+  md:[clip-path:inset(0_round_100px_100px_0_0)]
+        bg-white text-white rounded-tl-[50px] md:rounded-tl-[100px] rounded-tr-[50px] md:rounded-tr-[100px] h-dvh flex justify-center items-center"
+    >
+      <div className="fixed bottom-0 h-dvh w-full">
+        <div className="relative z-10 p-4">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="mb-6"
+          >
+            <div className="w-16 h-16 mx-auto mb-4 relative drop-shadow-lg">
+              <Image
+                src="/placeholder.svg?height=64&width=64"
+                alt="Ornament"
+                width={64}
+                height={64}
+                className="object-contain"
+              />
+            </div>
+          </motion.div>
 
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.8 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="mb-8 max-w-md mx-auto"
-      >
-        <h2 className="text-2xl font-serif text-[#8E7151] mb-4">
-          Terima Kasih
-        </h2>
-        <p className="text-[#8E7151] mb-6">
-          Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
-          Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
-        </p>
-        <p className="text-xl font-serif text-[#8E7151] mb-8">
-          {data.bride.nickname} & {data.groom.nickname}
-        </p>
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="mb-8 max-w-md mx-auto bg-white/30 backdrop-blur-sm rounded-2xl p-8 shadow-xl border-8 border-white/50"
+          >
+            <h2 className="text-2xl font-serif text-[#6B5744] mb-4 drop-shadow">
+              Terima Kasih
+            </h2>
+            <p className="text-[#6B5744] mb-6">
+              Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
+              Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+            </p>
+            <p className="text-xl font-serif text-[#8E7151] mb-8 font-semibold">
+              {data.brideName} & {data.groomName}
+            </p>
 
-        <div className="mt-8 pt-8 border-t border-[#E8D4B9]">
-          <p className="text-[#8E7151] italic">
-            "Dan segala sesuatu Kami ciptakan berpasang-pasangan supaya kamu
-            mengingat kebesaran Allah."
-          </p>
-          <p className="text-[#C4A77D] text-sm mt-2">
-            (QS. Adz-Dzariyat: 49)
-          </p>
+            <div className="mt-8 pt-8 border-t border-[#C4A77D]/50">
+              <p className="text-[#6B5744] italic leading-relaxed">
+                "Dan segala sesuatu Kami ciptakan berpasang-pasangan supaya kamu
+                mengingat kebesaran Allah."
+              </p>
+              <p className="text-[#A68968] text-sm mt-2 font-medium">
+                (QS. Adz-Dzariyat: 49)
+              </p>
+            </div>
+          </motion.div>
         </div>
-      </motion.div>
-    </section>
+
+        {/* Bottom Decorative Fade */}
+        <motion.div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#8E7151]/20 via-[#C4A77D]/10 to-transparent pointer-events-none" />
+      </div>
+    </footer>
   );
 }

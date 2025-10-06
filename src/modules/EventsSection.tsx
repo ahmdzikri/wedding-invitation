@@ -2,63 +2,51 @@
 import { CalendarPlus, Flower2, Heart } from "lucide-react";
 import { motion } from "motion/react";
 import { Button } from "~/components/ui/button";
+import config from "~/config/config";
 import { generateGoogleCalendarUrl } from "~/lib/utils";
-import {
-  formatWeddingDate,
-  formatWeddingTime,
-  getCoupleData,
-  getEventsData
-} from "~/lib/wedding-functions";
+import { formatWeddingDate, formatWeddingTime } from "~/lib/wedding-functions";
 
-interface SaveTheDateSectionProps {
+interface EventsSectionProps {
   className?: string;
 }
 
-export default function SaveTheDateSection({
-  className = "",
-}: SaveTheDateSectionProps) {
+export default function EventsSection({ className = "" }: EventsSectionProps) {
   // Get dynamic data from JSON
-  const events = getEventsData();
-  const couple = getCoupleData();
+  const events = config.event;
+  const couple = config.couple;
 
   const handleAddToCalendar = (eventType: "akad" | "resepsi") => {
-    const eventData = events[eventType];
+    const eventData = events.eventDetails[eventType];
     const calendarEvents = {
       akad: {
-        title: `Akad Nikah - ${couple.bride.nickname} & ${couple.groom.nickname}`,
+        title: `Akad Nikah - ${couple.brideName} & ${couple.groomName}`,
         startDate:
           eventData.date.replace(/-/g, "") +
           "T" +
-          eventData.time.replace(":", "") +
+          eventData.startTime.replace(":", "") +
           "00",
         endDate:
           eventData.date.replace(/-/g, "") +
           "T" +
-          (Number.parseInt(eventData.time.split(":")[0]) + 2)
-            .toString()
-            .padStart(2, "0") +
-          eventData.time.split(":")[1] +
+          eventData.endTime.replace(":", "") +
           "00",
         location: `${eventData.location.name}, ${eventData.location.address}`,
-        description: `Akad Nikah ${couple.bride.nickname} & ${couple.groom.nickname}`,
+        description: `Akad Nikah ${couple.brideName} & ${couple.groomName}`,
       },
       resepsi: {
-        title: `Resepsi - ${couple.bride.nickname} & ${couple.groom.nickname}`,
+        title: `Resepsi - ${couple.brideName} & ${couple.groomName}`,
         startDate:
           eventData.date.replace(/-/g, "") +
           "T" +
-          eventData.time.replace(":", "") +
+          eventData.startTime.replace(":", "") +
           "00",
         endDate:
           eventData.date.replace(/-/g, "") +
           "T" +
-          (Number.parseInt(eventData.time.split(":")[0]) + 4)
-            .toString()
-            .padStart(2, "0") +
-          eventData.time.split(":")[1] +
+          eventData.endTime.replace(":", "") +
           "00",
         location: `${eventData.location.name}, ${eventData.location.address}`,
-        description: `Resepsi Pernikahan ${couple.bride.nickname} & ${couple.groom.nickname}`,
+        description: `Resepsi Pernikahan ${couple.brideName} & ${couple.groomName}`,
       },
     };
 
@@ -71,7 +59,6 @@ export default function SaveTheDateSection({
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: true, margin: "-100px" }}
         className="mb-12 max-w-4xl mx-auto"
       >
         <h2 className="text-2xl font-serif text-[#8E7151] mb-8">
@@ -85,7 +72,6 @@ export default function SaveTheDateSection({
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
           className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
         >
           <div className="flex items-center justify-center mb-6">
@@ -96,17 +82,11 @@ export default function SaveTheDateSection({
           </h3>
           <div className="space-y-2 mb-6 text-center">
             <p className="text-lg text-[#8E7151] font-medium">
-              {formatWeddingDate(events.akad.date)}
+              {formatWeddingDate(events.eventDetails.akad.date)}
             </p>
             <p className="text-[#8E7151]">
-              {formatWeddingTime(events.akad.time)} -{" "}
-              {formatWeddingTime(
-                (Number.parseInt(events.akad.time.split(":")[0]) + 2)
-                  .toString()
-                  .padStart(2, "0") +
-                  ":" +
-                  events.akad.time.split(":")[1]
-              )}
+              {formatWeddingTime(events.eventDetails.akad.startTime)} -{" "}
+              {formatWeddingTime(events.eventDetails.akad.endTime)}
             </p>
           </div>
           <div className="text-center">
@@ -125,7 +105,6 @@ export default function SaveTheDateSection({
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
           className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
         >
           <div className="flex items-center justify-center mb-6">
@@ -136,17 +115,11 @@ export default function SaveTheDateSection({
           </h3>
           <div className="space-y-2 mb-6 text-center">
             <p className="text-lg text-[#8E7151] font-medium">
-              {formatWeddingDate(events.resepsi.date)}
+              {formatWeddingDate(events.eventDetails.resepsi.date)}
             </p>
             <p className="text-[#8E7151]">
-              {formatWeddingTime(events.resepsi.time)} -{" "}
-              {formatWeddingTime(
-                (Number.parseInt(events.resepsi.time.split(":")[0]) + 4)
-                  .toString()
-                  .padStart(2, "0") +
-                  ":" +
-                  events.resepsi.time.split(":")[1]
-              )}
+              {formatWeddingTime(events.eventDetails.resepsi.startTime)} -{" "}
+              {formatWeddingTime(events.eventDetails.resepsi.endTime)}
             </p>
           </div>
           <div className="text-center">
@@ -165,7 +138,6 @@ export default function SaveTheDateSection({
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.4, duration: 0.8 }}
-        viewport={{ once: true, margin: "-100px" }}
         className="mt-12 max-w-md mx-auto text-center"
       >
         <p className="text-[#8E7151] italic">

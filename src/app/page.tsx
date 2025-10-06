@@ -7,19 +7,18 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
 import SmoothScroll from "~/components/SmoothScroll";
 import { Button } from "~/components/ui/button";
+import config from "~/config/config";
 import {
-  formatWeddingDate,
-  getCoupleData,
-  getEventsData,
+  formatWeddingDate
 } from "~/lib/wedding-functions";
 import ClosingSection from "~/modules/ClosingSection";
 import CoupleSection from "~/modules/CoupleSection";
+import EventsSection from "~/modules/EventsSection";
 import Footer from "~/modules/Footer";
 import GreetingFormSection from "~/modules/GreetingFormSection";
 import HeaderSection from "~/modules/HeaderSection";
 import LocationSection from "~/modules/LocationSection";
 import QuranVerseSection from "~/modules/QuranVerseSection";
-import SaveTheDateSection from "~/modules/SaveTheDateSection";
 
 // Client component that uses useSearchParams
 function HomeContent() {
@@ -34,14 +33,12 @@ function HomeContent() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const openingRef = useRef<HTMLElement>(null);
 
-  const couple = getCoupleData();
-  const event = getEventsData();
   useEffect(() => {
     // Initialize audio
     if (typeof window !== "undefined") {
       const audio = new Audio();
-      audio.src = "/wedding-song.mp3";
-      audio.loop = true;
+      audio.src = config.audio.src;
+      audio.loop = config.audio.loop;
       audio.preload = "auto";
 
       audio.addEventListener("canplaythrough", () => {
@@ -218,10 +215,10 @@ function HomeContent() {
               Undangan Pernikahan
             </p>
             <h1 className="text-7xl font-tangerine font-bold text-accents mb-2">
-              {couple.bride.nickname} & {couple.groom.nickname}
+              {config.couple.brideName} & {config.couple.groomName}
             </h1>
             <p className="text-accents text-sm tracking-widest">
-              {formatWeddingDate(event.akad.date)}
+              {formatWeddingDate(config.event.date)}
             </p>
           </motion.div>
 
@@ -290,13 +287,10 @@ function HomeContent() {
       <CoupleSection />
 
       {/* Save the Date Section */}
-      <SaveTheDateSection />
+      <EventsSection />
 
       {/* Location Section */}
       <LocationSection />
-
-      {/* Gallery Section */}
-      {/* <GallerySection /> */}
 
       {/* Greeting Form Section */}
       <GreetingFormSection />
