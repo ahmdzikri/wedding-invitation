@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "motion/react";
 import Image from "next/image";
 import config from "~/config/config";
 
@@ -13,12 +12,7 @@ export default function ClosingSection() {
     >
       <div className="fixed bottom-0 h-dvh w-full">
         <div className="relative z-10 p-4">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="mb-6"
-          >
+          <div className="mb-6">
             <div className="w-16 h-16 mx-auto mb-4 relative drop-shadow-lg">
               <Image
                 src="/placeholder.svg?height=64&width=64"
@@ -28,14 +22,9 @@ export default function ClosingSection() {
                 className="object-contain"
               />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="mb-8 max-w-md mx-auto bg-white/30 backdrop-blur-sm rounded-2xl p-8 shadow-xl border-8 border-white/50"
-          >
+          <div className="mb-8 max-w-md mx-auto bg-white/30 backdrop-blur-sm rounded-2xl p-8 shadow-xl border-8 border-white/50">
             <h2 className="text-2xl font-serif text-[#6B5744] mb-4 drop-shadow">
               Terima Kasih
             </h2>
@@ -56,11 +45,11 @@ export default function ClosingSection() {
                 (QS. Adz-Dzariyat: 49)
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Bottom Decorative Fade */}
-        <motion.div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#8E7151]/20 via-[#C4A77D]/10 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#8E7151]/20 via-[#C4A77D]/10 to-transparent pointer-events-none" />
       </div>
     </footer>
   );

@@ -26,98 +26,50 @@ export default function IntroSection({
   return (
     <div className="h-dvh w-full mx-auto bg-primary flex flex-col items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none z-0 mask-b-from-30% mask-b-to-90%">
-        <Smoke density={20} opacity={0.7} enableRotation={false} enableWind={false} enableTurbulence={false} color="#ffffff"/>
+        <Smoke
+          density={20}
+          opacity={0.7}
+          enableRotation={false}
+          enableWind={false}
+          enableTurbulence={false}
+          color="#ffffff"
+        />
       </div>
       {/* Background pattern */}
       <motion.div
-        initial={{ opacity: 0, scale: 0 }}
+        initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
-          duration: 0.8,
-          scale: { type: "spring", visualDuration: 0.8 },
+          duration: 3,
+          delay: 0.2,
+          ease: [0, 0.71, 0.2, 1.01],
         }}
-        className="absolute inset-0 bg-[url('/bg.webp')] bg-[length:360px_auto] bg-center bg-no-repeat"
+        className="absolute inset-0 -mt-20 bg-[url('/background.webp')] bg-[length:360px_auto] bg-center bg-no-repeat"
       />
-
-      {/* Backdrop image in the middle */}
-      {/* <div className="absolute inset-0 flex items-start justify-center py-6 px-6 pointer-events-none">
-        <div className="w-[clamp(360px,90vw,900px)] max-h-[calc(100vh-3rem)] aspect-[835/1712]">
-          <img
-            src="/backdrop.svg"
-            alt="Backdrop ornament"
-            width={835}
-            height={1712}
-            loading="eager"
-            className="w-full h-full object-contain"
-          />
-        </div>
-      </div> */}
-
-      {/* Decorative elements */}
-      {/* <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 -left-1 rotate-90">
-          <Image
-            src="/ornamen-1.webp"
-            alt="Ornament 1"
-            width={220}
-            height={220}
-            className="object-contain pointer-events-none"
-            priority
-          />
-        </div>
-        <div className="absolute -top-1 -left-1.5 rotate-270" aria-hidden>
-          <Image
-            src="/flower.webp"
-            alt="Flower ornament"
-            width={220}
-            height={220}
-            className="object-contain pointer-events-none"
-            priority
-          />
-        </div>
-        <div className="absolute bottom-0 right-0 rotate-180">
-          <Image
-            src="/flower-ornamen.png"
-            alt="Flower ornament"
-            width={220}
-            height={220}
-            className="object-contain pointer-events-none"
-            priority
-          />
-        </div>
-      </div> */}
+      <motion.div
+        initial={{ y: 600 }}
+        animate={{ y: 0 }}
+        transition={{
+          duration: 1,
+          delay: 2,
+          ease: [0, 0.71, 0.2, 1.01],
+        }}
+        className="absolute left-0 right-0 h-[250px] bg-[url('/rumah-gadang.png')] bg-[length:400px_auto] bg-center bg-bottom bg-no-repeat"
+        style={{ top: 'calc(50vh + 70px)' }}
+      />
 
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 1 ,delay: 1.5}}
         className="relative z-10 flex flex-col justify-center gap-4 items-center text-center px-6 max-w-md"
       >
-        {/* <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="relative flex items-center justify-center font-hello-paris mt-[-10rem] text-center"
-        >
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <img
-              src="/flower-outline.png"
-              alt=""
-              className="object-contain w-[280px] h-[287.9px]"
-            />
-          </div>
-          <h2 className="relative z-10 text-8xl text-foreground -translate-y-4">
-            {config.couple.brideName.charAt(0).toUpperCase()}
-          </h2>
-          <h2 className="relative z-10 text-8xl text-foreground">
-            {config.couple.groomName.charAt(0).toUpperCase()}
-          </h2>
-        </motion.div> */}
+        
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="-mt-12"
+          className="-mt-8"
         >
           <p className="text-primary font-be-vietnam-pro text-xs tracking-widest uppercase mb-4">
             Undangan Pernikahan

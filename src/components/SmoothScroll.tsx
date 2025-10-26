@@ -15,10 +15,6 @@ function SmoothScroll({ children }: Props) {
     const locomotiveScroll = new LocomotiveScroll({
       el: ref.current as HTMLElement,
       smooth: true,
-      multiplier: 0.4, // Slow scroll speed
-      lerp: 0.03, // Smooth interpolation
-      direction: "vertical",
-      gestureDirection: "vertical",
       smartphone: {
         smooth: true,
       },
