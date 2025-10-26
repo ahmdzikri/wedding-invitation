@@ -24,9 +24,9 @@ export default function IntroSection({
     decodedGuestName ?? (searchParams.get("to") || "Tamu Terhormat");
   const displayGuestName = decodeURIComponent(guestName.replace(/\+/g, " "));
   return (
-    <div className="min-h-screen h-screen w-full mx-auto bg-primary flex flex-col items-center justify-center relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <Smoke density={25} enableTurbulence={false} color="#f8efef" />
+    <div className="h-dvh w-full mx-auto bg-primary flex flex-col items-center justify-center relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-0 mask-b-from-30% mask-b-to-90%">
+        <Smoke density={20} opacity={0.7} enableRotation={false} enableWind={false} enableTurbulence={false} color="#ffffff"/>
       </div>
       {/* Background pattern */}
       <motion.div

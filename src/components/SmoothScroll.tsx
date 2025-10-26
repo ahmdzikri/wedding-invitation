@@ -53,7 +53,7 @@ function SmoothScroll({ children }: Props) {
   }, []);
 
   return (
-    <main ref={ref} className="min-h-screen">
+    <main ref={ref}>
       {children}
     </main>
   );

@@ -83,7 +83,7 @@ export const Smoke = forwardRef<HTMLDivElement, SmokeProps>(({
   ...props
 }, ref) => {
   const smokeColor = useMemo(() => new THREE.Color(color), [color]);
-  const bgColor = useMemo(() => new THREE.Color('#600b22'), []);
+  const bgColor = useMemo<THREE.Color | null>(() => null, []);
 
   const smokeProps = useMemo(() => ({
     color: smokeColor,
@@ -132,6 +132,8 @@ export const Smoke = forwardRef<HTMLDivElement, SmokeProps>(({
       {...props}
     >
       <Canvas
+        gl={{ alpha: true }}
+        onCreated={({ gl }) => gl.setClearAlpha(0)}
         camera={{ fov: 60, position: [0, 0, 500], far: 6000 }}
         scene={{ background: bgColor }}
         resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
