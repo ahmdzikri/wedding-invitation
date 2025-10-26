@@ -65,7 +65,7 @@ export function CountdownTimer({
         <div className="w-full justify-center flex">
           <div className="flex size-full justify-center">
             <div className="my-1 h-full w-max">
-              <div className="flex justify-center gap-x-1 md:gap-x-2">
+              <div className="flex justify-center flex-wrap gap-1 md:gap-2">
                 <TimerBox
                   value={timeLeft.days}
                   label="hari"
@@ -105,7 +105,7 @@ function TimerBox({
 
   return (
     <div
-      className="relative flex aspect-square flex-col rounded-md items-center justify-center overflow-hidden animate-digital-glow w-20 h-20 text-[36px] border-[3px] border-[rgb(234, 223, 204)] text-white bg-[rgba(51,32,34,0.8)]"
+      className="relative flex aspect-square flex-col rounded-md items-center justify-center overflow-hidden animate-digital-glow w-16 h-16 sm:w-[6rem] sm:h-[6rem] md:w-24 md:h-24 text-3xl md:text-4xl border-[3px] border-[rgb(234, 223, 204)] text-white bg-[rgba(51,32,34,0.8)]"
     >
       <div className="flex leading-none font-arima animate-digital-clock">
         {/* Tens digit */}
@@ -152,7 +152,7 @@ function TimerBox({
       </div>
 
       <motion.span 
-        className="font-arima text-[11px]"
+        className="font-arima text-[11px] md:text-[14px]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}

@@ -2,21 +2,18 @@
 
 import { Volume2, VolumeX } from "lucide-react";
 import { motion } from "motion/react";
-import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
 import SmoothScroll from "~/components/SmoothScroll";
 import { Button } from "~/components/ui/button";
 import config from "~/config/config";
-import {
-  formatWeddingDate
-} from "~/lib/wedding-functions";
 import ClosingSection from "~/modules/ClosingSection";
 import CoupleSection from "~/modules/CoupleSection";
 import EventsSection from "~/modules/EventsSection";
 import Footer from "~/modules/Footer";
 import GreetingFormSection from "~/modules/GreetingFormSection";
 import HeaderSection from "~/modules/HeaderSection";
+import IntroSection from "~/modules/IntroSection";
 import LocationSection from "~/modules/LocationSection";
 import QuranVerseSection from "~/modules/QuranVerseSection";
 
@@ -170,82 +167,7 @@ function HomeContent() {
 
   if (!showInvitation) {
     return (
-      <div className="h-dvh w-full bg-background flex flex-col items-center justify-center relative overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 bg-[url('/vecteezy_luxury-batik-songket-pattern-frame-border-background_48185867.jpg')] bg-repeat bg-center opacity-4 bg-[length:200px_200px]" />
-
-        {/* Decorative elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#F5F1E8]/20 via-transparent to-[#E8D4B9]/20" />
-          <div className="absolute top-0 left-0 w-40 h-40 bg-[#D79863] rounded-full -translate-x-1/2 -translate-y-1/2 opacity-30" />
-          <div className="absolute bottom-0 right-0 w-60 h-60 bg-[#D79863] rounded-full translate-x-1/2 translate-y-1/2 opacity-30" />
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 flex flex-col justify-center gap-6 items-center text-center px-6 max-w-md"
-        >
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="flex font-hello-paris mt-[-6rem] flex-auto flex-wrap text-center leading-[14rem]"
-          >
-            <h2 className="text-[200px] text-accents ">{config.couple.brideName.charAt(0).toUpperCase()}</h2>
-            <h2 className="text-[200px] text-accents ">{config.couple.groomName.charAt(0).toUpperCase()}</h2>
-          </motion.div>
-          <div className="display-inline-block mx-auto relative">
-            <Image
-              src="/Untitled-1.png"
-              alt="Wedding ornament"
-              width={429}
-              height={27}
-              className="object-cover"
-            />
-          </div>
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="mt-8"
-          >
-            <p className="text-accents font-be-vietnam-pro text-sm tracking-widest uppercase mb-4">
-              Undangan Pernikahan
-            </p>
-            <h1 className="text-7xl font-tangerine font-bold text-accents mb-2">
-              {config.couple.brideName} & {config.couple.groomName}
-            </h1>
-            <p className="text-accents text-sm tracking-widest">
-              {formatWeddingDate(config.event.date)}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
-            className="mt-6"
-          >
-            <div className="flex flex-col items-center justify-center gap-2 mb-8">
-              <span className="text-accents">
-                Kepada Bapak/Ibu/Saudara/i{" "}
-              </span>
-              <span className="font-semibold">{decodedGuestName}</span>
-            </div>
-
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                onClick={openInvitation}
-                className="bg-secondary-foreground hover:bg-secondary-foreground/70 text-white px-8 py-6 rounded-md text-sm tracking-wider"
-              >
-                Buka Undangan
-              </Button>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </div>
+      <IntroSection decodedGuestName={decodedGuestName} onOpenInvitation={openInvitation} useGuestName={false} />
     );
   }
   return (
@@ -260,7 +182,7 @@ function HomeContent() {
         <Button
           variant="outline"
           size="icon"
-          className="rounded-full shadow-lg bg-white/80 backdrop-blur-sm hover:bg-white border border-[#E8D4B9]"
+          className="rounded-full shadow-xl bg-white/80 backdrop-blur-sm hover:bg-white border border-accents"
           onClick={toggleAudio}
           title={
             audioLoaded

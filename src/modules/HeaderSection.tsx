@@ -32,7 +32,7 @@ export default function HeaderSection({ className = "" }: HeaderSectionProps) {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="mb-6"
           >
-            <p className="text-[#C4A77D] text-sm tracking-widest uppercase mb-2">
+            <p className="text-secondary text-sm tracking-widest uppercase mb-2">
               Undangan Pernikahan
             </p>
             <div className="w-20 h-20 mx-auto mb-4 relative">
@@ -52,10 +52,10 @@ export default function HeaderSection({ className = "" }: HeaderSectionProps) {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="mb-8"
           >
-            <h1 className="text-7xl font-tangerine font-bold text-[#8E7151] mb-2">
+            <h1 className="text-7xl font-tangerine font-bold text-secondary mb-2">
               {config.couple.brideName} & {config.couple.groomName}
             </h1>
-            <p className="text-[#C4A77D] text-lg tracking-widest">
+            <p className="text-secondary/80 text-lg tracking-widest">
               {formatHeaderDate()}
             </p>
           </motion.div>
@@ -69,16 +69,16 @@ export default function HeaderSection({ className = "" }: HeaderSectionProps) {
             <div className="animate-bounce mt-16">
               {/* Desktop: ChevronDown, Mobile/Tablet: ChevronUp */}
               <ChevronDown
-                className="mx-auto text-[#C4A77D] hidden md:block"
+                className="mx-auto text-[#e6c597a8] hidden md:block"
                 size={24}
                 aria-label="Scroll down indicator"
               />
               <ChevronUp
-                className="mx-auto text-[#C4A77D] md:hidden"
+                className="mx-auto text-[#e6c597a8] md:hidden"
                 size={24}
                 aria-label="Swipe up indicator"
               />
-              <p className="text-xs text-[#C4A77D] mt-2 tracking-widest">
+              <p className="text-xs text-[#e6c597a8] mt-2 tracking-widest">
                 <span className="hidden md:inline">SCROLL</span>
                 <span className="md:hidden">SWIPE</span>
               </p>
