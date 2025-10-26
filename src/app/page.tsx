@@ -193,9 +193,9 @@ function HomeContent() {
           }
         >
           {isPlaying ? (
-            <VolumeX className="h-5 w-5 text-accents" />
-          ) : (
             <Volume2 className="h-5 w-5 text-accents" />
+          ) : (
+            <VolumeX className="h-5 w-5 text-accents" />
           )}
         </Button>
       </motion.div>
