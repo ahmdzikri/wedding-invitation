@@ -8,6 +8,7 @@ import SmoothScroll from "~/components/SmoothScroll";
 import { Button } from "~/components/ui/button";
 import config from "~/config/config";
 import ClosingSection from "~/modules/ClosingSection";
+import CountdownSection from "~/modules/CountdownSection";
 import CoupleSection from "~/modules/CoupleSection";
 import EventsSection from "~/modules/EventsSection";
 import Footer from "~/modules/Footer";
@@ -15,7 +16,6 @@ import GreetingFormSection from "~/modules/GreetingFormSection";
 import HeaderSection from "~/modules/HeaderSection";
 import IntroSection from "~/modules/IntroSection";
 import LocationSection from "~/modules/LocationSection";
-import QuranVerseSection from "~/modules/QuranVerseSection";
 
 // Client component that uses useSearchParams
 function HomeContent() {
@@ -182,7 +182,7 @@ function HomeContent() {
         <Button
           variant="outline"
           size="icon"
-          className="rounded-full shadow-xl bg-white/80 backdrop-blur-sm hover:bg-white border border-accents"
+          className="rounded-full shadow-xl  bg-white backdrop-blur-sm hover:bg-white/80 border border-accents"
           onClick={toggleAudio}
           title={
             audioLoaded
@@ -193,9 +193,9 @@ function HomeContent() {
           }
         >
           {isPlaying ? (
-            <Volume2 className="h-5 w-5 text-accents" />
+            <Volume2 color="var(--primary)"/>
           ) : (
-            <VolumeX className="h-5 w-5 text-accents" />
+            <VolumeX color="var(--primary)" />
           )}
         </Button>
       </motion.div>
@@ -204,7 +204,7 @@ function HomeContent() {
       <HeaderSection />
 
       {/* Quran Verse Section */}
-      <QuranVerseSection ref={openingRef} />
+      <CountdownSection ref={openingRef} />
       {/* Couple Section */}
       <CoupleSection />
 

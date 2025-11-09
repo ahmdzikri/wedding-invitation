@@ -5,13 +5,13 @@ import { CountdownTimer } from "~/components/CountdownTimer";
 import config from "~/config/config";
 import { getEventDateTime } from "~/lib/wedding-functions";
 
-interface QuranVerseSectionProps {
+interface CountdownSectionProps {
   className?: string;
   ref?: React.Ref<HTMLElement>;
 }
 
-export default function QuranVerseSection({
-  className = "", ref }: QuranVerseSectionProps) {
+export default function CountdownSection({
+  className = "", ref }: CountdownSectionProps) {
   return (
     <section className={`py-20 px-6 text-center bg-white ${className}`} ref={ref}>
       <motion.div
