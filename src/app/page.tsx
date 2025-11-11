@@ -167,7 +167,7 @@ function HomeContent() {
 
   if (!showInvitation) {
     return (
-      <IntroSection decodedGuestName={decodedGuestName} onOpenInvitation={openInvitation} useGuestName={false} />
+      <IntroSection decodedGuestName={decodedGuestName} onOpenInvitation={openInvitation} useGuestName={true} />
     );
   }
   return (
