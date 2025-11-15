@@ -49,6 +49,8 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --breakpoint-xs: 24rem;
+  --background-image-hills: url('/bg-hills.webp');
+  --background-image-rumah-gadang: url('/rumah-gadang.webp')
 }
 
 :root {
@@ -63,8 +65,8 @@
   --primary-foreground: oklch(0.8705 0.0499 73.043);
   --secondary: oklch(0.73 0.1 63.12);
   --secondary-foreground: oklch(0.32 0.1162 12.497);
-  --muted: oklch(0.937 0.0256 73.18);
-  --muted-foreground: oklch(0.3954 0.1383 10.0789);
+  --muted: oklch(0.9671 0.0087 26.02);
+  --muted-foreground: oklch(0.6251 0.0709 12.26);
   --accent: oklch(0.32 0.1162 12.497);
   --accent-foreground: oklch(0.8705 0.0499 73.043);
   --destructive: oklch(0.3954 0.1383 10.0789);
@@ -98,8 +100,8 @@
   --primary-foreground: oklch(0.32 0.1162 12.497);
   --secondary: oklch(0.3954 0.1383 10.0789);
   --secondary-foreground: oklch(0.8705 0.0499 73.043);
-  --muted: oklch(0.4336 0.1375 8.7792);
-  --muted-foreground: oklch(0.937 0.0256 73.18);
+  --muted: oklch(0.6251 0.0709 12.26);
+  --muted-foreground: oklch(0.9671 0.0087 26.02);
   --accent: oklch(0.8705 0.0499 73.043);
   --accent-foreground: oklch(0.32 0.1162 12.497);
   --destructive: oklch(0.937 0.0256 73.18);

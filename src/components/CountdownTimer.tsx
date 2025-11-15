@@ -9,15 +9,12 @@ interface CountdownTimerProps {
 }
 
 function convertLocalToUTC(dateString: string, timeZone: string) {
-  // Buat date object dari string input
   const inputDate = new Date(dateString);
 
-  // Dapatkan offset timezone dalam menit
   const targetDate = new Date(inputDate.toLocaleString("en-US", { timeZone }));
   const localDate = new Date(inputDate.toLocaleString("en-US"));
   const offsetMs = localDate.getTime() - targetDate.getTime();
 
-  // Kembalikan waktu UTC yang benar dengan menambahkan offset
   return new Date(inputDate.getTime() + offsetMs);
 }
 
@@ -91,7 +88,6 @@ export function CountdownTimer({
   );
 }
 
-/* Sub-komponen TimerBox */
 function TimerBox({
   value,
   label,
@@ -105,9 +101,9 @@ function TimerBox({
 
   return (
     <div
-      className="relative flex aspect-square flex-col rounded-md items-center justify-center overflow-hidden animate-digital-glow w-16 h-16 sm:w-[6rem] sm:h-[6rem] md:w-24 md:h-24 text-3xl md:text-4xl border-[3px] border-[rgb(234, 223, 204)] text-white bg-[rgba(51,32,34,0.8)]"
+      className="relative flex aspect-square flex-col rounded-md items-center justify-center overflow-hidden w-16 h-16 sm:w-[6rem] sm:h-[6rem] md:w-24 md:h-24 text-3xl md:text-4xl border-2 border-accent bg-muted-foreground"
     >
-      <div className="flex leading-none font-arima animate-digital-clock">
+      <div className="flex leading-none font-arima">
         {/* Tens digit */}
         <div className="relative w-[18px] h-[36px] overflow-hidden">
           <AnimatePresence mode="wait">
@@ -122,7 +118,7 @@ function TimerBox({
                 scale: { duration: 0.2 },
                 opacity: { duration: 0.2 }
               }}
-              className="absolute inset-0 flex items-center justify-center"
+              className="absolute inset-0 flex items-center justify-center text-muted"
             >
               {tens}
             </motion.span>
@@ -143,7 +139,7 @@ function TimerBox({
                 scale: { duration: 0.2 },
                 opacity: { duration: 0.2 }
               }}
-              className="absolute inset-0 flex items-center justify-center"
+              className="absolute inset-0 flex items-center justify-center text-muted"
             >
               {ones}
             </motion.span>
@@ -152,7 +148,7 @@ function TimerBox({
       </div>
 
       <motion.span 
-        className="font-arima text-[11px] md:text-[14px]"
+        className="font-arima text-[11px] md:text-[14px] text-muted"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}

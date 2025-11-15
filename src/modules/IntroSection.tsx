@@ -70,7 +70,7 @@ export default function IntroSection({
               delay: 2,
               ease: [0, 0.71, 0.2, 1.01],
             }}
-            className="absolute left-0 right-0 -bottom-10 h-[35%] bg-[url('/rumah-gadang.webp')] bg-contain bg-bottom bg-no-repeat"
+            className="absolute left-0 right-0 -bottom-10 h-[35%] bg-rumah-gadang bg-contain bg-bottom bg-no-repeat"
           />
         </div>
 
