@@ -28,7 +28,16 @@ export default function CountdownSection({
         />
       </div>
       <div className="max-w-2xl mx-auto relative">
-        <div className="absolute inset-0 rounded-4xl border-4 border-accent z-10 pointer-events-none" />
+        <div
+          className="absolute inset-0 rounded-[32px] z-10 pointer-events-none animated-gradient-border p-[5px]"
+          style={{
+            WebkitMask:
+              "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            WebkitMaskComposite: "xor",
+            mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            maskComposite: "exclude",
+          }}
+        />
         <CountdownTimer
           targetLocal={getEventDateTime({
             date: config.countdown.targetDate,

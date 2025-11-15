@@ -50,7 +50,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --breakpoint-xs: 24rem;
   --background-image-hills: url('/bg-hills.webp');
-  --background-image-rumah-gadang: url('/rumah-gadang.webp')
+  --background-image-rumah-gadang: url('/rumah-gadang.webp');
 }
 
 :root {
@@ -125,13 +125,16 @@
 }
 
 @layer base {
+
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+
   * {
     @apply border-border outline-ring/50 text-primary;
   }
+
   body {
     @apply bg-foreground text-primary;
   }
@@ -234,6 +237,7 @@
       transform: scale(1.2);
       opacity: 0;
     }
+
     100% {
       transform: scale(1);
       opacity: 1;
@@ -245,34 +249,44 @@
   }
 
   @keyframes gentle-float-right {
+
     0%,
     100% {
       transform: translateY(0px) rotate(0deg) scale(1);
     }
+
     20% {
       transform: translateY(-8px) rotate(-1.2deg) scale(1.03);
     }
+
     40% {
       transform: translateY(-15px) rotate(0.7deg) scale(0.97);
     }
+
     60% {
       transform: translateY(-6px) rotate(-0.9deg) scale(1.02);
     }
+
     80% {
       transform: translateY(-12px) rotate(1.1deg) scale(0.99);
     }
   }
+
   @keyframes gentle-float-left {
+
     0%,
     100% {
       transform: translateY(0px) rotate(0deg) scale(1);
     }
+
     25% {
       transform: translateY(-5px) rotate(1deg) scale(1.02);
     }
+
     50% {
       transform: translateY(-10px) rotate(-0.5deg) scale(0.98);
     }
+
     75% {
       transform: translateY(-3px) rotate(0.8deg) scale(1.01);
     }
@@ -281,5 +295,27 @@
   .animate-gentle-float-right {
     animation: gentle-float-right 10s ease-in-out infinite;
     transform-origin: center;
+  }
+
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes rotate-gradient {
+    0% {
+      --gradient-angle: 0deg;
+    }
+
+    100% {
+      --gradient-angle: 360deg;
+    }
+  }
+
+  .animated-gradient-border {
+    --gradient-angle: 0deg;
+    animation: rotate-gradient 10s linear infinite;
+    background: linear-gradient(var(--gradient-angle), var(--accent) 0%, #fff 50%, var(--accent) 100%);
   }
 }
