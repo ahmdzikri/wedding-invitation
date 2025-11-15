@@ -54,7 +54,7 @@ export function CountdownTimer({
   }, [targetDateUTC]);
 
   return (
-    <div className="relative w-full my-5" data-type="timer">
+    <div className="relative w-full px-2 my-5" data-type="timer">
       <div
         className="mx-auto w-full px-1 transition-[background]"
         data-state="closed"

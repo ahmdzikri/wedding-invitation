@@ -15,10 +15,10 @@ export default function CountdownSection({
 }: CountdownSectionProps) {
   return (
     <section
-      className={`relative z-10 px-6 py-12 text-center bg-muted w-full min-h-dvh flex items-center justify-center ${className}`}
+      className={`relative z-10 px-6 pt-32 pb-12 text-center bg-muted w-full min-h-dvh flex items-start justify-center ${className}`}
       ref={ref}
     >
-      <div className="absolute inset-0 bottom-0 top-auto bg-hills bg-no-repeat bg-top h-[60%] md:h-[100%] bg-cover" />
+      <div className="absolute inset-0 bottom-0 top-auto bg-hills bg-no-repeat bg-top h-[60%] md:h-[80%] bg-cover" />
       <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-0 z-20 min-w-[280px] w-full max-w-[800px]">
         <motion.div
           initial={{ y: 300 }}

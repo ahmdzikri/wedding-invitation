@@ -51,6 +51,7 @@
   --breakpoint-xs: 24rem;
   --background-image-hills: url('/bg-hills.webp');
   --background-image-rumah-gadang: url('/rumah-gadang.webp');
+  --background-image-pattern-flower: url('/pattern-flower.webp');
 }
 
 :root {
@@ -71,7 +72,7 @@
   --accent-foreground: oklch(0.8705 0.0499 73.043);
   --destructive: oklch(0.3954 0.1383 10.0789);
   --destructive-foreground: oklch(0.8705 0.0499 73.043);
-  --border: oklch(0.7976 0.0438 77.5517);
+  --border: oklch(0.8665 0.0262 26.56);
   --input: oklch(0.73 0.1 63.12);
   --ring: oklch(0.32 0.1162 12.497);
   --chart-1: oklch(0.32 0.1162 12.497);
@@ -136,7 +137,7 @@
   }
 
   body {
-    @apply bg-foreground text-primary;
+    @apply bg-foreground font-be-vietnam-pro text-primary;
   }
 }
 
