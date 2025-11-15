@@ -1,12 +1,18 @@
 "use client";
+import { useForm } from "@tanstack/react-form";
 import { Send } from "lucide-react";
 import { motion } from "motion/react";
-import type React from "react";
-import { useState } from "react";
 import LoadingSpin from "~/components/LoadingSpin";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { ScrollArea } from "~/components/ui/scroll-area";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
 import { Textarea } from "~/components/ui/textarea";
 import { useAddGreeting, useGreetings } from "~/lib/hooks/useGreetings";
 
@@ -17,41 +23,41 @@ interface GreetingFormSectionProps {
 export default function GreetingFormSection({
   className = "",
 }: GreetingFormSectionProps) {
-  const [greetingName, setGreetingName] = useState("");
-  const [greetingMessage, setGreetingMessage] = useState("");
-
   const { data: greetingsData, isLoading: isLoadingGreetings } = useGreetings();
   const addGreetingMutation = useAddGreeting();
 
   const greetings = greetingsData?.greetings || [];
-  const submitting = addGreetingMutation.isPending;
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const form = useForm({
+    defaultValues: {
+      name: "",
+      message: "",
+      attendance: "",
+    },
+    onSubmit: async ({ value }) => {
+      if (!value.name.trim() || !value.message.trim() || !value.attendance) {
+        return;
+      }
 
-    if (!greetingName.trim() || !greetingMessage.trim()) {
-      return;
-    }
+      try {
+        await addGreetingMutation.mutateAsync({
+          name: value.name.trim(),
+          message: value.message.trim(),
+          attendance: value.attendance,
+        });
 
-    try {
-      await addGreetingMutation.mutateAsync({
-        name: greetingName.trim(),
-        message: greetingMessage.trim(),
-      });
-
-      // Clear form after successful submission
-      setGreetingName("");
-      setGreetingMessage("");
-    } catch (error) {
-      console.error("Failed to submit greeting:", error);
-      // You can add toast notification here if needed
-      alert(
-        `Error: ${
-          error instanceof Error ? error.message : "Failed to submit greeting"
-        }`
-      );
-    }
-  };
+        // Reset form after successful submission
+        form.reset();
+      } catch (error) {
+        console.error("Failed to submit greeting:", error);
+        alert(
+          `Error: ${
+            error instanceof Error ? error.message : "Failed to submit greeting"
+          }`
+        );
+      }
+    },
+  });
   return (
     <section className={`pt-8 pb-20 px-6 text-center bg-[#F9F3E9] ${className}`}>
       <div className="p-6 rounded-xl shadow-sm bg-white">
@@ -78,45 +84,88 @@ export default function GreetingFormSection({
             
             className="bg-[#F9F3E9] p-6 rounded-md shadow-sm"
           >
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-left text-sm font-medium text-[#8E7151] mb-1"
-                >
-                  Nama
-                </label>
-                <Input
-                  id="name"
-                  value={greetingName}
-                  onChange={(e) => setGreetingName(e.target.value)}
-                  className="border-[#E8D4B9] focus-visible:ring-[#C4A77D] bg-white"
-                  placeholder="Nama Anda"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-left text-sm font-medium text-[#8E7151] mb-1"
-                >
-                  Ucapan & Doa
-                </label>
-                <Textarea
-                  id="message"
-                  value={greetingMessage}
-                  onChange={(e) => setGreetingMessage(e.target.value)}
-                  className="border-[#E8D4B9] focus-visible:ring-[#C4A77D] min-h-32 bg-white"
-                  placeholder="Tulis ucapan dan doa Anda untuk kedua mempelai"
-                  required
-                />
-              </div>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                form.handleSubmit();
+              }}
+              className="space-y-4"
+            >
+              <form.Field name="name">
+                {(field) => (
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-left text-sm font-medium text-[#8E7151] mb-1"
+                    >
+                      Nama
+                    </label>
+                    <Input
+                      id="name"
+                      value={field.state.value}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      className="border-[#E8D4B9] focus-visible:ring-[#C4A77D] bg-white"
+                      placeholder="Nama Anda"
+                      required
+                    />
+                  </div>
+                )}
+              </form.Field>
+
+              <form.Field name="message">
+                {(field) => (
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-left text-sm font-medium text-[#8E7151] mb-1"
+                    >
+                      Ucapan & Doa
+                    </label>
+                    <Textarea
+                      id="message"
+                      value={field.state.value}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      className="border-[#E8D4B9] focus-visible:ring-[#C4A77D] min-h-32 bg-white"
+                      placeholder="Tulis ucapan dan doa Anda untuk kedua mempelai"
+                      required
+                    />
+                  </div>
+                )}
+              </form.Field>
+
+              <form.Field name="attendance">
+                {(field) => (
+                  <div>
+                    <label
+                      htmlFor="attendance"
+                      className="block text-left text-sm font-medium text-[#8E7151] mb-1"
+                    >
+                      Konfirmasi Kehadiran
+                    </label>
+                    <Select
+                      value={field.state.value}
+                      onValueChange={(value) => field.handleChange(value)}
+                    >
+                      <SelectTrigger className="border-[#E8D4B9] focus:ring-[#C4A77D] bg-white">
+                        <SelectValue placeholder="Pilih konfirmasi kehadiran" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="yes">Ya, saya hadir</SelectItem>
+                        <SelectItem value="no">Belum bisa hadir</SelectItem>
+                        <SelectItem value="uncertain">Masih ragu-ragu</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+              </form.Field>
+
               <Button
                 type="submit"
                 className="w-full bg-[#C4A77D] hover:bg-[#B39B74] text-white"
-                disabled={submitting}
+                disabled={addGreetingMutation.isPending}
               >
-                {submitting ? (
+                {addGreetingMutation.isPending ? (
                   <span className="flex items-center">
                     <LoadingSpin color="white" className="mr-2 h-4 w-4" />
                     Mengirim...

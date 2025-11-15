@@ -4,6 +4,7 @@ interface Greeting {
   timestamp: string;
   name: string;
   message: string;
+  attendance?: string;
 }
 
 interface GreetingsResponse {
@@ -13,6 +14,7 @@ interface GreetingsResponse {
 interface AddGreetingRequest {
   name: string;
   message: string;
+  attendance: string;
 }
 
 interface AddGreetingResponse {

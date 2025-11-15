@@ -32,7 +32,7 @@ export async function GET() {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `${SHEET_NAME}!A:C`, // Assuming columns: Timestamp, Name, Message
+      range: `${SHEET_NAME}!A:D`, // Columns: Timestamp, Name, Message, Attendance
     });
 
     const rows = response.data.values || [];
@@ -42,6 +42,7 @@ export async function GET() {
       timestamp: row[0] || "",
       name: row[1] || "",
       message: row[2] || "",
+      attendance: row[3] || "",
     }));
 
     return NextResponse.json({ greetings });
@@ -81,15 +82,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, message } = await request.json();
+    const { name, message, attendance } = await request.json();
 
-    if (!name || !message) {
+    if (!name || !message || !attendance) {
       console.error("Missing required fields:", {
         name: !!name,
         message: !!message,
+        attendance: !!attendance,
       });
       return NextResponse.json(
-        { error: "Name and message are required" },
+        { error: "Name, message, and attendance are required" },
         { status: 400 }
       );
     }
@@ -97,18 +99,18 @@ export async function POST(request: NextRequest) {
     const sheets = getGoogleSheetsClient();
     const timestamp = new Date().toISOString();
 
-    const result = await sheets.spreadsheets.values.append({
+    await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: `${SHEET_NAME}!A:C`,
+      range: `${SHEET_NAME}!A:D`,
       valueInputOption: "USER_ENTERED",
       requestBody: {
-        values: [[timestamp, name, message]],
+        values: [[timestamp, name, message, attendance]],
       },
     });
 
     return NextResponse.json({
       success: true,
-      greeting: { timestamp, name, message },
+      greeting: { timestamp, name, message, attendance },
     });
   } catch (error) {
     console.error("Error adding greeting:", error);
