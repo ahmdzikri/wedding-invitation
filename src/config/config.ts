@@ -8,14 +8,16 @@ interface MetaConfig {
 interface CoupleConfig {
   groomName: string;
   groomFullname: string;
+  groomImage: Photo;
   groomFather: string;
   groomMother: string;
-  groomPosition: string;
+  groomOrderFamily: string;
   brideName: string;
   brideFullname: string;
   brideFather: string;
   brideMother: string;
-  bridePosition: string;
+  brideImage: Photo;
+  brideOrderFamily: string;
 }
 
 interface QuranVerseConfig {
@@ -59,7 +61,7 @@ interface AudioConfig {
   loop: boolean;
 }
 
-interface GalleryPhoto {
+interface Photo {
   id: number;
   src: string;
   alt: string;
@@ -67,7 +69,7 @@ interface GalleryPhoto {
 }
 
 interface GalleryConfig {
-  photos: GalleryPhoto[];
+  photos: Photo[];
 }
 
 interface Config {
@@ -92,15 +94,27 @@ const config: Config = {
   // Couple Information
   couple: {
     groomName: "Reza",
+    groomImage: {
+      id: 1,
+      src: "/groom.png",
+      alt: "Reza",
+      caption: "Reza Budiman",
+    },
     groomFullname: "Reza Budiman",
     groomFather: "Zultomi",
     groomMother: "Rini",
-    groomPosition: "1",
+    groomOrderFamily: "1",
     brideName: "Ainil",
     brideFullname: "Ainil Khairin Nisa",
     brideFather: "Redison Mhd. Yoes",
     brideMother: "Hayatun Nufus",
-    bridePosition: "2",
+    brideImage: {
+      id: 2,
+      src: "/bride.png",
+      alt: "Ainil",
+      caption: "Ainil Khairin Nisa",
+    },
+    brideOrderFamily: "2",
   },
 
   quranVerse: {
@@ -125,8 +139,7 @@ const config: Config = {
           name: "Rumah Gadang Gebu Minang",
           address:
             "Jl. Gayung Kebonsari No.64, Ketintang, Kec. Gayungan, Surabaya, Jawa Timur 60235",
-          linkGoogleMaps:
-            "https://maps.app.goo.gl/zv7FyF4AMqi8nZp39",
+          linkGoogleMaps: "https://maps.app.goo.gl/zv7FyF4AMqi8nZp39",
           embedGoogleMaps:
             "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d494.6514429853419!2d112.7295045436285!3d-7.330122285815497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb5d91126c39%3A0x32917d51ab54dda3!2sRumah%20Gadang%20Gebu%20Minang!5e0!3m2!1sen!2sid!4v1759647043016!5m2!1sen!2sid",
         },
@@ -143,8 +156,7 @@ const config: Config = {
           name: "Rumah Gadang Gebu Minang",
           address:
             "Jl. Gayung Kebonsari No.64, Ketintang, Kec. Gayungan, Surabaya, Jawa Timur 60235",
-          linkGoogleMaps:
-            "https://maps.app.goo.gl/zv7FyF4AMqi8nZp39",
+          linkGoogleMaps: "https://maps.app.goo.gl/zv7FyF4AMqi8nZp39",
           embedGoogleMaps:
             "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d494.6514429853419!2d112.7295045436285!3d-7.330122285815497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb5d91126c39%3A0x32917d51ab54dda3!2sRumah%20Gadang%20Gebu%20Minang!5e0!3m2!1sen!2sid!4v1759647043016!5m2!1sen!2sid",
         },

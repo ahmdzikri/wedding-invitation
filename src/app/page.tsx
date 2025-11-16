@@ -167,11 +167,15 @@ function HomeContent() {
 
   if (!showInvitation) {
     return (
-      <IntroSection decodedGuestName={decodedGuestName} onOpenInvitation={openInvitation} useGuestName={true} />
+      <IntroSection
+        decodedGuestName={decodedGuestName}
+        onOpenInvitation={openInvitation}
+        useGuestName={true}
+      />
     );
   }
   return (
-    <div className="min-h-screen bg-[#F9F3E9] text-accents w-full overflow-x-hidden">
+    <div className="min-h-screen bg-muted text-accents w-full overflow-x-hidden">
       {/* Floating mute button */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -193,7 +197,7 @@ function HomeContent() {
           }
         >
           {isPlaying ? (
-            <Volume2 color="var(--primary)"/>
+            <Volume2 color="var(--primary)" />
           ) : (
             <VolumeX color="var(--primary)" />
           )}
@@ -231,8 +235,15 @@ export default function Home() {
   return (
     <Suspense
       fallback={
-        <div className="h-dvh w-full bg-[#F9F3E9] flex items-center justify-center">
-          Loading...
+        <div className="h-dvh w-full bg-muted flex items-center justify-center">
+          <div className="relative flex items-center justify-center font-hello-paris mt-[-10rem] text-center">
+            <h2 className="relative z-10 text-8xl text-foreground -translate-y-4">
+              {config.couple.brideName.charAt(0).toUpperCase()}
+            </h2>
+            <h2 className="relative z-10 text-8xl text-foreground">
+              {config.couple.groomName.charAt(0).toUpperCase()}
+            </h2>
+          </div>
         </div>
       }
     >
