@@ -29,7 +29,7 @@ export default function CountdownSection({
       </div>
       <div className="max-w-2xl mx-auto relative">
         <div
-          className="absolute inset-0 rounded-[32px] z-10 pointer-events-none animated-gradient-border p-[5px]"
+          className="absolute inset-0 rounded-4xl z-10 pointer-events-none animated-gradient-border p-[5px]"
           style={{
             WebkitMask:
               "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",

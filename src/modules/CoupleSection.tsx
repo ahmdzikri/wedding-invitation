@@ -11,8 +11,8 @@ export default function CoupleSection({ className = "" }: CoupleSectionProps) {
   const couple = config.couple;
   return (
     <section className={`flex flex-col justify-center items-center min-h-screen px-6 py-12 text-center bg-transparent ${className}`}>
-      <div className="flex flex-col gap-10 w-full justify-center items-center p-6 rounded-[32px] border relative overflow-hidden">
-        <div className="absolute inset-0 rounded-[32px] bg-pattern-flower bg-contain bg-repeat mask-y-from-70% mask-y-to-90% pointer-events-none" />
+      <div className="flex flex-col gap-10 w-full justify-center items-center p-6 rounded-4xl border relative overflow-hidden">
+        <div className="absolute inset-0 rounded-4xl bg-pattern-flower bg-contain bg-repeat mask-y-from-70% mask-y-to-90% pointer-events-none" />
         <div className="absolute inset-0 bottom-0 top-auto bg-hills bg-no-repeat bg-bottom md:bg-center h-full bg-contain md:bg-cover opacity-30 mask-t-to-30%" />
         <motion.div
           initial={{ opacity: 0, y: 50 }}
