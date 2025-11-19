@@ -207,16 +207,12 @@ function HomeContent() {
       {/* Header Section */}
       <HeaderSection />
 
-      {/* Quran Verse Section */}
       <CountdownSection ref={openingRef} />
       {/* Couple Section */}
       <CoupleSection />
 
       {/* Save the Date Section */}
       <EventsSection />
-
-      {/* Location Section */}
-      <LocationSection />
 
       {/* Greeting Form Section */}
       <GreetingFormSection />

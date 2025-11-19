@@ -27,16 +27,16 @@ export default function IntroSection({
 
   return (
     <div className="h-dvh w-full mx-auto bg-primary flex flex-col items-center justify-center relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none z-0 mask-b-from-30% mask-b-to-90%">
-        <Smoke
-          density={20}
-          opacity={0.4}
-          enableRotation={false}
-          enableWind={false}
-          enableTurbulence={false}
-          color="#ffffff"
-        />
-      </div>
+        <div className="absolute inset-0 pointer-events-none z-0 mask-b-from-30% mask-b-to-90%">
+          <Smoke
+            density={20}
+            opacity={0.4}
+            enableRotation={false}
+            enableWind={false}
+            enableTurbulence={false}
+            color="#ffffff"
+          />
+        </div>
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -124,16 +124,6 @@ export default function IntroSection({
           </motion.div>
         </motion.div>
       </motion.div>
-      {/* <motion.div
-        initial={{ y: 600 }}
-        animate={{ y: 0 }}
-        transition={{
-          duration: 1,
-          delay: 2,
-          ease: [0, 0.71, 0.2, 1.01],
-        }}
-        className="absolute left-0 right-0 bottom-0 h-[30dvh] bg-[url('/rumah-gadang.webp')] bg-contain bg-bottom bg-no-repeat"
-      /> */}
     </div>
   );
 }

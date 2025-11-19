@@ -1,10 +1,12 @@
 'use client';
 
 import { Canvas } from '@react-three/fiber';
-import React, { forwardRef, Suspense, useMemo } from 'react';
+import { forwardRef, Suspense, useMemo } from 'react';
 import { Smoke as ReactSmoke, SmokeScene } from 'react-smoke';
 import * as THREE from 'three';
 import { cn } from "~/lib/utils";
+
+import type React from 'react';
 
 export interface SmokeProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -114,13 +116,15 @@ export const Smoke = forwardRef<HTMLDivElement, SmokeProps>(({
         className={cn('w-full h-full', className)}
         {...props}
       >
-        <SmokeScene
-          camera={{ fov: 60, position: [0, 0, 500], far: 6000 }}
-          scene={{ background: bgColor }}
-          smoke={smokeProps}
-          suspenseFallback={null}
-          resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
-        />
+        <Suspense fallback={<div className="w-full h-full" />}>
+          <SmokeScene
+            camera={{ fov: 60, position: [0, 0, 500] as [number, number, number], far: 6000 }}
+            scene={{ background: bgColor }}
+            smoke={smokeProps}
+            suspenseFallback={null}
+            resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
+          />
+        </Suspense>
       </div>
     );
   }
@@ -134,7 +138,7 @@ export const Smoke = forwardRef<HTMLDivElement, SmokeProps>(({
       <Canvas
         gl={{ alpha: true }}
         onCreated={({ gl }) => gl.setClearAlpha(0)}
-        camera={{ fov: 60, position: [0, 0, 500], far: 6000 }}
+        camera={{ fov: 60, position: [0, 0, 500] as [number, number, number], far: 6000 }}
         scene={{ background: bgColor }}
         resize={{ scroll: false, debounce: { scroll: 0, resize: 0 } }}
       >

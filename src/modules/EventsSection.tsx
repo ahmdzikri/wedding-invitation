@@ -1,7 +1,6 @@
 "use client";
-import { CalendarPlus, Flower2, Heart } from "lucide-react";
 import { motion } from "motion/react";
-import { Button } from "~/components/ui/button";
+import EventCard from "~/components/EventCard";
 import config from "~/config/config";
 import { generateGoogleCalendarUrl } from "~/lib/utils";
 import { formatWeddingDate, formatWeddingTime } from "~/lib/wedding-functions";
@@ -53,8 +52,12 @@ export default function EventsSection({ className = "" }: EventsSectionProps) {
     window.open(calendarUrl, "_blank");
   };
   return (
-    <section className={`py-20 px-4 text-center bg-muted ${className}`}>
-      <div className="px-6 py-18 bg-foreground rounded-4xl">
+    <section
+      className={`relative py-20 px-4 text-center bg-muted ${className}`}
+    >
+      <div className="absolute inset-0 bottom-0 top-auto bg-hills bg-no-repeat bg-bottom md:bg-center h-full bg-contain md:bg-cover opacity-30 mask-t-to-90%" />
+      <div className="px-4 py-18 bg-foreground rounded-4xl relative">
+        <div className="absolute inset-0 rounded-4xl bg-pattern-batik bg-contain bg-repeat pointer-events-none opacity-50" />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -66,73 +69,46 @@ export default function EventsSection({ className = "" }: EventsSectionProps) {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto relative z-10">
           {/* Akad Card */}
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="bg-muted p-8 rounded-2xl shadow-lg shadow-black hover:shadow-xl transition-shadow duration-300"
-          >
-            <h3 className="text-4xl font-hello-paris font-bold mb-2 text-center">
-              Akad Nikah
-            </h3>
-            <div className="space-y-2 mb-6 text-center">
-              <p className="text-lg font-medium">
-                {formatWeddingDate(events.eventDetails.akad.date)}
-              </p>
-              <p>
-                {formatWeddingTime(events.eventDetails.akad.startTime)} -{" "}
-                {formatWeddingTime(events.eventDetails.akad.endTime)}
-              </p>
-            </div>
-            <div className="text-center">
-              <Button
-                onClick={() => handleAddToCalendar("akad")}
-                className="bg-primary hover:bg-primary/70 text-muted px-6 py-3 rounded-lg text-sm flex items-center gap-2 mx-auto"
-              >
-                <CalendarPlus color="var(--muted)" className="h-4 w-4" />
-                Add to Calendar
-              </Button>
-            </div>
-          </motion.div>
+          <EventCard
+            type="event"
+            title="Akad Nikah"
+            date={formatWeddingDate(events.eventDetails.akad.date)}
+            startTime={formatWeddingTime(events.eventDetails.akad.startTime)}
+            endTime={formatWeddingTime(events.eventDetails.akad.endTime)}
+            onAddToCalendar={() => handleAddToCalendar("akad")}
+            delay={0}
+          />
 
           {/* Resepsi Card */}
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="bg-muted p-8 rounded-2xl shadow-lg shadow-black hover:shadow-xl transition-shadow duration-300"
-          >
-            <h3 className="text-4xl font-hello-paris font-bold mb-2 text-center">
-              Resepsi
-            </h3>
-            <div className="space-y-2 mb-6 text-center">
-              <p className="text-lg font-medium">
-                {formatWeddingDate(events.eventDetails.resepsi.date)}
-              </p>
-              <p>
-                {formatWeddingTime(events.eventDetails.resepsi.startTime)} -{" "}
-                {formatWeddingTime(events.eventDetails.resepsi.endTime)}
-              </p>
-            </div>
-            <div className="text-center">
-              <Button
-                onClick={() => handleAddToCalendar("resepsi")}
-                className="bg-primary hover:bg-primary/70 text-muted px-6 py-3 rounded-lg text-sm flex items-center gap-2 mx-auto"
-              >
-                <CalendarPlus color="var(--muted)" className="h-4 w-4" />
-                Add to Calendar
-              </Button>
-            </div>
-          </motion.div>
+          <EventCard
+            type="event"
+            title="Resepsi"
+            date={formatWeddingDate(events.eventDetails.resepsi.date)}
+            startTime={formatWeddingTime(events.eventDetails.resepsi.startTime)}
+            endTime={formatWeddingTime(events.eventDetails.resepsi.endTime)}
+            onAddToCalendar={() => handleAddToCalendar("resepsi")}
+            delay={0.2}
+          />
+          <div className="md:col-span-2">
+            <EventCard
+              type="location"
+              title="Lokasi Acara"
+              locationName={events.eventDetails.resepsi.location.name}
+              address={events.eventDetails.resepsi.location.address}
+              embedGoogleMaps={events.eventDetails.resepsi.location.embedGoogleMaps}
+              linkGoogleMaps={events.eventDetails.resepsi.location.linkGoogleMaps}
+              delay={0.4}
+            />
+          </div>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="mt-12 max-w-md mx-auto text-center"
+          className="mt-12 max-w-md mx-auto text-center relative z-10"
         >
           <p className="text-muted italic">
             "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila

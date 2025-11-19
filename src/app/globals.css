@@ -52,6 +52,7 @@
   --background-image-hills: url('/bg-hills.webp');
   --background-image-rumah-gadang: url('/rumah-gadang.webp');
   --background-image-pattern-flower: url('/pattern-flower.webp');
+  --background-image-pattern-batik: url('/pattern-batik.webp');
 }
 
 :root {
