@@ -8,6 +8,7 @@
   --font-mono: var(--font-geist-mono);
   --font-great-vibes: var(--font-great-vibes);
   --font-amiri: var(--font-amiri);
+  --font-arima: var(--font-arima);
   --font-be-vietnam-pro: var(--font-be-vietnam-pro);
   --font-hello-paris: "Hello Paris", serif;
   --font-hello-paris-script: "Hello Paris Script", cursive;
@@ -68,7 +69,7 @@
   --secondary: oklch(0.73 0.1 63.12);
   --secondary-foreground: oklch(0.32 0.1162 12.497);
   --muted: oklch(0.9671 0.0087 26.02);
-  --muted-foreground: oklch(0.6251 0.0709 12.26);
+  --muted-foreground: oklch(78.983% 0.02143 325.582);
   --accent: oklch(0.32 0.1162 12.497);
   --accent-foreground: oklch(0.8705 0.0499 73.043);
   --destructive: oklch(0.3954 0.1383 10.0789);
@@ -138,7 +139,7 @@
   }
 
   body {
-    @apply bg-foreground text-primary;
+    @apply bg-foreground text-primary font-be-vietnam-pro;
   }
 }
 

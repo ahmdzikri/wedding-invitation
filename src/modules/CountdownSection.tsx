@@ -50,7 +50,7 @@ export default function CountdownSection({
             {config.quranVerse.arabic}
           </p>
 
-          <p className="font-be-vietnam-pro text-xs md:text-base mb-4 italic">
+          <p className="font-arima text-xs md:text-base mb-4 italic">
             {config.quranVerse.translation}
           </p>
 

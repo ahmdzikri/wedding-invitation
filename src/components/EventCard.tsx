@@ -70,8 +70,8 @@ export default function EventCard(props: EventCardProps) {
       ) : (
         <>
           <div className="space-y-2 mb-4 text-center relative z-10">
-            <p className="font-medium">{props.locationName}</p>
-            <p className="text-sm">{props.address}</p>
+            <p className="md:text-xl font-medium">{props.locationName}</p>
+            <p className="text-xs md:text-sm">{props.address}</p>
           </div>
           <div className="flex flex-col gap-4">
             <motion.div

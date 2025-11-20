@@ -59,20 +59,18 @@ export default function GreetingFormSection({
     },
   });
   return (
-    <section className={`pt-8 pb-20 px-6 text-center bg-[#F9F3E9] ${className}`}>
-      <div className="p-6 rounded-xl shadow-sm bg-white">
+    <section className={`relative pt-8 pb-20 px-6 text-center bg-primary ${className}`}>
+      <div className="absolute inset-0 bg-pattern-batik bg-auto bg-repeat pointer-events-none opacity-50" />
+      <div className="p-6 rounded-xl shadow-sm bg-muted">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           
-          className="mb-12 max-w-4xl mx-auto"
+          className="mb-6 max-w-4xl mx-auto"
         >
-          <p className="text-sm text-[#C4A77D] tracking-widest uppercase mb-4">
+          <h2 className="text-sm tracking-widest uppercase">
             Ucapan & Doa
-          </p>
-          <h2 className="text-2xl font-serif text-[#8E7151] mb-8">
-            Berikan Ucapan & Doa Restu
           </h2>
         </motion.div>
 
@@ -82,7 +80,7 @@ export default function GreetingFormSection({
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
             
-            className="bg-[#F9F3E9] p-6 rounded-md shadow-sm"
+            className="relative bg-primary p-6 rounded-md shadow-sm"
           >
             <form
               onSubmit={(e) => {
@@ -97,7 +95,7 @@ export default function GreetingFormSection({
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-left text-sm font-medium text-[#8E7151] mb-1"
+                      className="block text-left text-sm font-medium text-muted mb-1"
                     >
                       Nama
                     </label>
@@ -105,7 +103,7 @@ export default function GreetingFormSection({
                       id="name"
                       value={field.state.value}
                       onChange={(e) => field.handleChange(e.target.value)}
-                      className="border-[#E8D4B9] focus-visible:ring-[#C4A77D] bg-white"
+                      className="border-muted text-sm bg-white"
                       placeholder="Nama Anda"
                       required
                     />
@@ -118,7 +116,7 @@ export default function GreetingFormSection({
                   <div>
                     <label
                       htmlFor="message"
-                      className="block text-left text-sm font-medium text-[#8E7151] mb-1"
+                      className="block text-left text-sm font-medium text-muted mb-1"
                     >
                       Ucapan & Doa
                     </label>
@@ -126,7 +124,7 @@ export default function GreetingFormSection({
                       id="message"
                       value={field.state.value}
                       onChange={(e) => field.handleChange(e.target.value)}
-                      className="border-[#E8D4B9] focus-visible:ring-[#C4A77D] min-h-32 bg-white"
+                      className="border-muted text-sm min-h-32 bg-white"
                       placeholder="Tulis ucapan dan doa Anda untuk kedua mempelai"
                       required
                     />
@@ -139,7 +137,7 @@ export default function GreetingFormSection({
                   <div>
                     <label
                       htmlFor="attendance"
-                      className="block text-left text-sm font-medium text-[#8E7151] mb-1"
+                      className="block text-left text-sm font-medium text-muted mb-1"
                     >
                       Konfirmasi Kehadiran
                     </label>
@@ -147,7 +145,7 @@ export default function GreetingFormSection({
                       value={field.state.value}
                       onValueChange={(value) => field.handleChange(value)}
                     >
-                      <SelectTrigger className="border-[#E8D4B9] focus:ring-[#C4A77D] bg-white">
+                      <SelectTrigger className="border-muted bg-white placeholder:text-muted-foreground">
                         <SelectValue placeholder="Pilih konfirmasi kehadiran" />
                       </SelectTrigger>
                       <SelectContent>
@@ -162,7 +160,7 @@ export default function GreetingFormSection({
 
               <Button
                 type="submit"
-                className="w-full bg-[#C4A77D] hover:bg-[#B39B74] text-white"
+                className="w-full"
                 disabled={addGreetingMutation.isPending}
               >
                 {addGreetingMutation.isPending ? (

@@ -53,11 +53,11 @@ export default function EventsSection({ className = "" }: EventsSectionProps) {
   };
   return (
     <section
-      className={`relative py-20 px-4 text-center bg-muted ${className}`}
+      className={`relative pb-12 px-4 text-center bg-muted ${className}`}
     >
       <div className="absolute inset-0 bottom-0 top-auto bg-hills bg-no-repeat bg-bottom md:bg-center h-full bg-contain md:bg-cover opacity-30 mask-t-to-90%" />
       <div className="px-4 py-18 bg-foreground rounded-4xl relative">
-        <div className="absolute inset-0 rounded-4xl bg-pattern-batik bg-contain bg-repeat pointer-events-none opacity-50" />
+        <div className="absolute inset-0 rounded-4xl bg-pattern-batik bg-auto bg-repeat pointer-events-none opacity-50" />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -110,7 +110,7 @@ export default function EventsSection({ className = "" }: EventsSectionProps) {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="mt-12 max-w-md mx-auto text-center relative z-10"
         >
-          <p className="text-muted italic">
+          <p className="font-arima text-sm md:text-base italic text-muted text-shadow-lg leading-loose">
             "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
             Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada
             kami."
