@@ -13,7 +13,7 @@ interface GreetingsResponse {
 
 interface AddGreetingRequest {
   name: string;
-  message: string;
+  message?: string;
   attendance: string;
 }
 

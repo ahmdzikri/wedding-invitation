@@ -25,7 +25,7 @@ export function PersonCard({
       initial={{ x: gender === "bride" ? -50 : 50, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="flex flex-col items-center font-be-vietnam-pro"
+      className="flex flex-col items-center font-be-vietnam-pro text-primary"
     >
       <div className="relative w-[260px]">
         <div

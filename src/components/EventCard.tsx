@@ -32,7 +32,7 @@ export default function EventCard(props: EventCardProps) {
       initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ delay, duration: 0.8 }}
-      className="bg-muted pt-9 pb-6 px-6 rounded-2xl shadow-lg shadow-black hover:shadow-xl transition-shadow duration-300 relative overflow-hidden"
+      className="bg-background pt-9 pb-6 px-6 rounded-2xl shadow-lg shadow-black hover:shadow-xl transition-shadow duration-300 relative overflow-hidden text-primary"
     >
       <div className="absolute left-0 right-0 bottom-0 h-full bg-[url('/bg-rumah-gadang.png')] bg-no-repeat bg-contain bg-bottom pointer-events-none" />
 
@@ -60,7 +60,7 @@ export default function EventCard(props: EventCardProps) {
           <div className="text-center relative z-10">
             <Button
               onClick={props.onAddToCalendar}
-              className="bg-primary hover:bg-primary/70 text-muted px-6 py-3 rounded-lg text-sm flex items-center gap-2 mx-auto"
+              className="bg-primary hover:bg-primary/70 text-primary-foreground px-6 py-3 rounded-lg text-sm flex items-center gap-2 mx-auto"
             >
               <CalendarPlus color="var(--muted)" className="h-4 w-4" />
               Add to Calendar
@@ -94,7 +94,7 @@ export default function EventCard(props: EventCardProps) {
             <div className="text-center relative z-10">
               <Button
                 onClick={() => window.open(props.linkGoogleMaps, "_blank")}
-                className="bg-primary hover:bg-primary/70 text-muted px-6 py-3 rounded-lg text-sm flex items-center gap-2 mx-auto"
+                className="bg-primary hover:bg-primary/70 text-primary-foreground px-6 py-3 rounded-lg text-sm flex items-center gap-2 mx-auto"
               >
                 <MapPinned color="var(--muted)" className="h-4 w-4" />
                 Buka Google Maps

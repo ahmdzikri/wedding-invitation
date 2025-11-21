@@ -84,14 +84,14 @@ export async function POST(request: NextRequest) {
 
     const { name, message, attendance } = await request.json();
 
-    if (!name || !message || !attendance) {
+    if (!name || !attendance) {
       console.error("Missing required fields:", {
         name: !!name,
         message: !!message,
         attendance: !!attendance,
       });
       return NextResponse.json(
-        { error: "Name, message, and attendance are required" },
+        { error: "Name, and attendance are required" },
         { status: 400 }
       );
     }

@@ -175,7 +175,7 @@ function HomeContent() {
     );
   }
   return (
-    <div className="min-h-screen bg-muted text-accents w-full overflow-x-hidden">
+    <div className="min-h-screen bg-background text-accents w-full overflow-x-hidden">
       {/* Floating mute button */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}

@@ -75,16 +75,16 @@ export default function HeaderSection({ className = "" }: HeaderSectionProps) {
             <div className="animate-bounce mt-16">
               {/* Desktop: ChevronDown, Mobile/Tablet: ChevronUp */}
               <ChevronDown
-                className="mx-auto text-[#e6c597a8] hidden md:block"
+                className="mx-auto text-primary hidden md:block"
                 size={24}
                 aria-label="Scroll down indicator"
               />
               <ChevronUp
-                className="mx-auto text-[#e6c597a8] md:hidden"
+                className="mx-auto text-primary md:hidden"
                 size={24}
                 aria-label="Swipe up indicator"
               />
-              <p className="text-xs text-[#e6c597a8] mt-2 tracking-widest">
+              <p className="text-xs text-primary mt-2 tracking-widest">
                 <span className="hidden md:inline">SCROLL</span>
                 <span className="md:hidden">SWIPE</span>
               </p>

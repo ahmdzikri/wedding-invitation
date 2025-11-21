@@ -67,7 +67,7 @@ export default function LocationCard({
         <div className="text-center relative z-10">
           <Button
             onClick={() => window.open(linkGoogleMaps, "_blank")}
-            className="bg-primary hover:bg-primary/70 text-muted px-6 py-3 rounded-lg text-sm flex items-center gap-2 mx-auto"
+            className="bg-primary hover:bg-primary/70 text-primary-foreground px-6 py-3 rounded-lg text-sm flex items-center gap-2 mx-auto"
           >
             <MapPinned color="var(--muted)" className="h-4 w-4" />
             Buka Google Maps

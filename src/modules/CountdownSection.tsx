@@ -15,7 +15,7 @@ export default function CountdownSection({
 }: CountdownSectionProps) {
   return (
     <section
-      className={`relative z-10 px-6 pt-32 pb-12 text-center bg-muted w-full min-h-dvh flex items-start justify-center ${className}`}
+      className={`relative z-10 px-6 pt-32 pb-12 text-center bg-background w-full min-h-dvh flex items-start justify-center ${className}`}
       ref={ref}
     >
       <div className="absolute inset-0 bottom-0 top-auto bg-hills bg-no-repeat bg-top h-[60%] md:h-[80%] bg-cover" />
@@ -45,7 +45,7 @@ export default function CountdownSection({
           })}
           timeZone={config.countdown.timeZone}
         />
-        <div className="relative z-30 p-4 rounded-2xl bg-white/70 m-4">
+        <div className="relative z-30 p-4 text-primary rounded-2xl bg-white/70 m-4">
           <p className="text-base md:text-xl font-amiri mb-4 leading-loose">
             {config.quranVerse.arabic}
           </p>

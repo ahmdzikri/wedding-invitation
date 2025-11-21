@@ -101,7 +101,7 @@ function TimerBox({
 
   return (
     <div
-      className="relative flex aspect-square flex-col rounded-md items-center justify-center overflow-hidden w-16 h-16 sm:w-[6rem] sm:h-[6rem] md:w-24 md:h-24 text-3xl md:text-4xl border-2 border-accent bg-accent/70"
+      className="relative flex aspect-square flex-col rounded-md items-center justify-center overflow-hidden w-16 h-16 sm:w-[6rem] sm:h-[6rem] md:w-24 md:h-24 text-3xl md:text-4xl border-2 border-primary bg-primary/70"
     >
       <div className="flex leading-none font-arima">
         {/* Tens digit */}
@@ -109,16 +109,16 @@ function TimerBox({
           <AnimatePresence mode="wait">
             <motion.span
               key={tens}
-              initial={{ y: 36, scale: 0.8, opacity: 1 }}
+              initial={{ y: -36, scale: 0.8, opacity: 1 }}
               animate={{ y: 0, scale: 1, opacity: 1 }}
-              exit={{ y: -36, scale: 0.8, opacity: 0 }}
+              exit={{ y: 36, scale: 0.8, opacity: 0 }}
               transition={{ 
                 duration: 0.3, 
                 ease: [0.25, 0.1, 0.25, 1],
                 scale: { duration: 0.2 },
                 opacity: { duration: 0.2 }
               }}
-              className="absolute inset-0 flex items-center justify-center text-muted"
+              className="absolute inset-0 flex items-center justify-center text-primary-foreground"
             >
               {tens}
             </motion.span>
@@ -130,16 +130,16 @@ function TimerBox({
           <AnimatePresence mode="wait">
             <motion.span
               key={ones}
-              initial={{ y: 36, scale: 0.8, opacity: 1 }}
+              initial={{ y: -36, scale: 0.8, opacity: 1 }}
               animate={{ y: 0, scale: 1, opacity: 1 }}
-              exit={{ y: -36, scale: 0.8, opacity: 0 }}
+              exit={{ y: 36, scale: 0.8, opacity: 0 }}
               transition={{ 
                 duration: 0.3, 
                 ease: [0.25, 0.1, 0.25, 1],
                 scale: { duration: 0.2 },
                 opacity: { duration: 0.2 }
               }}
-              className="absolute inset-0 flex items-center justify-center text-muted"
+              className="absolute inset-0 flex items-center justify-center text-primary-foreground"
             >
               {ones}
             </motion.span>
@@ -148,7 +148,7 @@ function TimerBox({
       </div>
 
       <motion.span 
-        className="font-arima text-[11px] md:text-[14px] text-muted"
+        className="font-arima text-[11px] md:text-[14px] text-primary-foreground"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}

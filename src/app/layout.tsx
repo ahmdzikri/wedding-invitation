@@ -82,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="id">
       <body className={`${geistSans.variable} ${geistMono.variable} ${greatVibes.variable} ${amiri.variable} ${arima.variable} ${tangerine.variable} ${beVietnamPro.variable} antialiased`}>
         <QueryProvider>
           <Toaster />

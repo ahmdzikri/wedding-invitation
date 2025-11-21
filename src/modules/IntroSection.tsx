@@ -115,7 +115,7 @@ export default function IntroSection({
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 onClick={onOpenInvitation ?? (() => {})}
-                className="bg-primary hover:bg-primary/70 text-muted font-semibold !px-7 py-5 rounded-full text-sm md:text-md tracking-wider"
+                className="bg-primary hover:bg-primary/70 text-primary-foreground font-semibold !px-7 py-5 rounded-full text-sm md:text-md tracking-wider"
               >
                 <MailOpenIcon color="var(--muted)" />
                 Buka Undangan
