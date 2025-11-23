@@ -220,8 +220,6 @@ function HomeContent() {
       {/* Closing Section */}
       <ClosingSection />
 
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }
