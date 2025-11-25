@@ -101,7 +101,7 @@ function TimerBox({
 
   return (
     <div
-      className="relative flex aspect-square flex-col rounded-md items-center justify-center overflow-hidden w-16 h-16 sm:w-[6rem] sm:h-[6rem] md:w-24 md:h-24 text-3xl md:text-4xl border-2 border-primary bg-primary/70"
+      className="relative flex aspect-square flex-col rounded-2xl items-center justify-center overflow-hidden w-16 h-16 sm:w-[6rem] sm:h-[6rem] md:w-24 md:h-24 text-3xl md:text-4xl border-2 border-primary bg-primary/70"
     >
       <div className="flex leading-none font-arima">
         {/* Tens digit */}
