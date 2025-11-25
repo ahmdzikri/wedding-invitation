@@ -11,7 +11,7 @@ export default function ClosingSection() {
         bg-primary h-screen"
     >
       
-      <div className="fixed top-0 h-[calc(100vh_-_52px)] w-full flex flex-col items-center justify-center">
+      <div className="fixed top-0 h-[calc(100vh_-_34px)] w-full flex flex-col items-center justify-center">
         <div className="absolute inset-0 pointer-events-none z-0">
           <Smoke
             opacity={0.3}
@@ -35,19 +35,18 @@ export default function ClosingSection() {
               {data.brideName} & {data.groomName}
             </p>
             <div className="mt-6">
-              <p className="text-xs 2xl:text-sm text-foreground leading-relaxed">
-                "Dan segala sesuatu Kami ciptakan berpasang-pasangan supaya kamu
-                mengingat kebesaran Allah."
+              <p className="text-xs xl:text-sm text-foreground font-arima font-semibold leading-relaxed">
+                "Karajo nan ba pokok, silang nan ba pangka"
               </p>
-              <p className="text-xs 2xl:text-sm text-foreground mt-2 font-medium">
-                (QS. Adz-Dzariyat: 49)
+              <p className="text-xs 2xl:text-sm text-foreground mt-1">
+                Turut Mengundang : <br /> Ninik Mamak, Alim Ulama, Cadiak Pandai, dan Urang Sumando
               </p>
             </div>
           </div>
         </div>
 
-        <div className="fixed bottom-0 left-0 right-0 py-4 px-2 text-center bg-muted z-50">
-          <p className="text-foreground text-sm">
+        <div className="fixed bottom-0 left-0 right-0 p-2 text-center bg-muted z-50">
+          <p className="text-foreground text-xs">
             Made with <Heart className="inline-block h-4 w-4 text-foreground" />{" "}
             by{" "}
             <a

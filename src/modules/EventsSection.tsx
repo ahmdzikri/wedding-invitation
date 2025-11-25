@@ -103,19 +103,6 @@ export default function EventsSection({ className = "" }: EventsSectionProps) {
             />
           </div>
         </div>
-
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="mt-12 max-w-md mx-auto text-center relative z-10"
-        >
-          <p className="font-arima text-sm md:text-base italic text-primary-foreground text-shadow-lg leading-loose">
-            "Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
-            Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada
-            kami."
-          </p>
-        </motion.div>
       </div>
     </section>
   );
