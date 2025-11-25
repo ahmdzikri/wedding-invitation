@@ -25,7 +25,7 @@ export default function IntroSection({
   const displayGuestName = decodeURIComponent(guestName.replace(/\+/g, " "));
 
   return (
-    <div className="container-box bg-primary h-screen">
+    <div className="container-box bg-primary h-screen flex items-end">
       <div className="w-full flex flex-col items-center justify-center">
         <div className="absolute inset-0 pointer-events-none z-0 mask-b-from-30% mask-b-to-90%">
           <Smoke
@@ -45,7 +45,7 @@ export default function IntroSection({
             delay: 0.2,
             ease: [0, 0.71, 0.2, 1.01],
           }}
-          className="relative flex justify-center items-center w-full max-w-[32rem] h-screen aspect-[1022/1915] bg-frame bg-no-repeat bg-center bg-contain p-4"
+          className="relative flex justify-center items-center w-full h-screen max-h-[calc(100dvh-40px)] aspect-[1022/1915] bg-frame bg-no-repeat bg-center bg-contain p-4"
         >
           <motion.div
             initial={{ opacity: 0 }}
@@ -58,13 +58,13 @@ export default function IntroSection({
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              <p className="text-primary font-be-vietnam-pro text-xs lg:text-base tracking-widest uppercase">
+              <p className="text-primary font-be-vietnam-pro text-xs 2xl:text-base tracking-widest uppercase">
                 Undangan Pernikahan
               </p>
-              <h1 className="text-5xl md:text-7xl font-hello-paris font-bold text-primary tracking-tighter mb-2">
+              <h1 className="text-5xl 2xl:text-7xl font-hello-paris font-bold text-primary tracking-tighter mb-2">
                 {config.couple.brideName} & {config.couple.groomName}
               </h1>
-              <p className="text-primary text-sm lg:text-base tracking-widest">
+              <p className="text-primary text-sm 2xl:text-base tracking-widest">
                 {formatWeddingDate(config.event.date)}
               </p>
             </motion.div>
