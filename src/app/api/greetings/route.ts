@@ -18,8 +18,8 @@ const getGoogleSheetsClient = () => {
   return google.sheets({ version: "v4", auth });
 };
 
-// GET - Fetch greetings from Google Sheets
-export async function GET() {
+// GET - Fetch greetings from Google Sheets with pagination
+export async function GET(request: NextRequest) {
   try {
     if (!SPREADSHEET_ID) {
       return NextResponse.json(
@@ -27,6 +27,10 @@ export async function GET() {
         { status: 500 }
       );
     }
+
+    const searchParams = request.nextUrl.searchParams;
+    const page = Number.parseInt(searchParams.get("page") || "1");
+    const limit = Number.parseInt(searchParams.get("limit") || "5");
 
     const sheets = getGoogleSheetsClient();
 
@@ -38,14 +42,35 @@ export async function GET() {
     const rows = response.data.values || [];
 
     // Skip header row and format data
-    const greetings = rows.slice(1).map((row) => ({
+    const allGreetings = rows.slice(1).map((row) => ({
       timestamp: row[0] || "",
       name: row[1] || "",
       message: row[2] || "",
       attendance: row[3] || "",
     }));
 
-    return NextResponse.json({ greetings });
+    // Filter out empty messages and sort by timestamp (newest first)
+    const filteredGreetings = allGreetings
+      .filter((greeting) => greeting.message.trim() !== "")
+      .sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+
+    // Calculate pagination
+    const totalCount = filteredGreetings.length;
+    const totalPages = Math.ceil(totalCount / limit);
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const greetings = filteredGreetings.slice(startIndex, endIndex);
+
+    return NextResponse.json({
+      greetings,
+      pagination: {
+        page,
+        limit,
+        totalCount,
+        totalPages,
+        hasMore: page < totalPages,
+      },
+    });
   } catch (error) {
     console.error("Error fetching greetings:", error);
     return NextResponse.json(

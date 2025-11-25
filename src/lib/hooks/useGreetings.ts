@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface Greeting {
   timestamp: string;
@@ -7,8 +7,17 @@ interface Greeting {
   attendance?: string;
 }
 
+interface Pagination {
+  page: number;
+  limit: number;
+  totalCount: number;
+  totalPages: number;
+  hasMore: boolean;
+}
+
 interface GreetingsResponse {
   greetings: Greeting[];
+  pagination: Pagination;
 }
 
 interface AddGreetingRequest {
@@ -22,9 +31,9 @@ interface AddGreetingResponse {
   greeting: Greeting;
 }
 
-// Fetch greetings from API
-const fetchGreetings = async (): Promise<GreetingsResponse> => {
-  const response = await fetch('/api/greetings');
+// Fetch greetings from API with pagination
+const fetchGreetings = async ({ pageParam = 1 }): Promise<GreetingsResponse> => {
+  const response = await fetch(`/api/greetings?page=${pageParam}&limit=5`);
   if (!response.ok) {
     throw new Error('Failed to fetch greetings');
   }
@@ -56,11 +65,15 @@ const addGreeting = async (data: AddGreetingRequest): Promise<AddGreetingRespons
   return result;
 };
 
-// Hook to fetch greetings
+// Hook to fetch greetings with infinite scroll
 export const useGreetings = () => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ['greetings'],
     queryFn: fetchGreetings,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      return lastPage.pagination.hasMore ? lastPage.pagination.page + 1 : undefined;
+    },
     staleTime: 30000, // 30 seconds
     refetchInterval: 60000, // Refetch every minute
   });
@@ -80,4 +93,4 @@ export const useAddGreeting = () => {
 };
 
 // Export types for use in components
-export type { Greeting, AddGreetingRequest };
+export type { Greeting, AddGreetingRequest, Pagination };

@@ -23,7 +23,7 @@ export default function ClosingSection() {
           />
         </div>
         <div className="relative flex justify-center items-center w-full max-w-[27rem] 2xl:max-w-[32rem] h-full aspect-[600/1011] bg-frame-flower-with-rg bg-no-repeat bg-center bg-contain p-4">
-          <div className="flex flex-col gap-4 items-center justify-center max-w-sm text-center px-8 -mt-44">
+          <div className="flex flex-col gap-4 items-center justify-center max-w-xs text-center px-6 -mt-44">
             <h2 className="text-sm 2xl:text-lg text-foreground uppercase">
               Terima Kasih
             </h2>

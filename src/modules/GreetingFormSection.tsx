@@ -47,10 +47,18 @@ interface GreetingFormSectionProps {
 export default function GreetingFormSection({
   className = "",
 }: GreetingFormSectionProps) {
-  const { data: greetingsData, isLoading: isLoadingGreetings } = useGreetings();
+  const {
+    data: greetingsData,
+    isLoading: isLoadingGreetings,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useGreetings();
   const addGreetingMutation = useAddGreeting();
 
-  const greetings = greetingsData?.greetings || [];
+  // Flatten all pages into a single array
+  const greetings = greetingsData?.pages.flatMap((page) => page.greetings) || [];
+  const totalCount = greetingsData?.pages[0]?.pagination.totalCount || 0;
 
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const [scrollState, setScrollState] = useState({
@@ -74,6 +82,11 @@ export default function GreetingFormSection({
         viewport.scrollTop + viewport.clientHeight >= viewport.scrollHeight - 1;
 
       setScrollState({ isAtTop, isAtBottom });
+
+      // Load more when scrolled near bottom
+      if (isAtBottom && hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
     };
 
     // Initial check
@@ -81,7 +94,7 @@ export default function GreetingFormSection({
 
     viewport.addEventListener("scroll", handleScroll);
     return () => viewport.removeEventListener("scroll", handleScroll);
-  }, [greetings.length]); // Re-run when greetings change
+  }, [greetings.length, hasNextPage, isFetchingNextPage, fetchNextPage]); // Re-run when greetings change
 
   const form = useForm({
     defaultValues: {
@@ -287,8 +300,7 @@ export default function GreetingFormSection({
                 <CardHeader>
                   <div className="flex flex-row-reverse items-center gap-1 text-foreground">
                     <span className="text-xs font-medium">
-                      {greetings.filter((greeting) => greeting.message).length}{" "}
-                      Ucapan
+                      {totalCount} Ucapan
                     </span>
                     <MessageCircle className="h-3 w-3" />
                   </div>
@@ -317,39 +329,40 @@ export default function GreetingFormSection({
                         data-scroll="false"
                       >
                         <div className="space-y-4 pr-4">
-                          {greetings
-                            .filter((greeting) => greeting.message)
-                            .sort((a, b) =>
-                              b.timestamp.localeCompare(a.timestamp)
-                            )
-                            .map((greeting, index) => (
-                              <div
-                                key={`${greeting.timestamp}-${index}`}
-                              >
-                                <Card className="p-3 shadow-lg gap-2 rounded-[16px_16px_16px_0]">
-                                  <CardHeader className="px-0 gap-0">
-                                    <CardTitle className="font-bold text-primary">
-                                      {greeting.name}
-                                    </CardTitle>
-                                  </CardHeader>
-                                  <CardContent className="px-0 text-sm text-foreground break-words">
-                                    {greeting.message}
-                                  </CardContent>
-                                  <CardFooter className="px-0 text-[10px] text-foreground flex-row-reverse">
-                                    {new Date(greeting.timestamp)
-                                      .toLocaleDateString("id-ID", {
-                                        day: "2-digit",
-                                        month: "short",
-                                        year: "numeric",
-                                        hour: "2-digit",
-                                        minute: "2-digit",
-                                        hour12: false,
-                                      })
-                                      .replace(/,/, ", ")}
-                                  </CardFooter>
-                                </Card>
-                              </div>
-                            ))}
+                          {greetings.map((greeting, index) => (
+                            <div key={`${greeting.timestamp}-${index}`}>
+                              <Card className="p-3 shadow-lg gap-2 rounded-[16px_16px_16px_0]">
+                                <CardHeader className="px-0 gap-0">
+                                  <CardTitle className="font-bold text-primary">
+                                    {greeting.name}
+                                  </CardTitle>
+                                </CardHeader>
+                                <CardContent className="px-0 text-sm text-foreground break-words">
+                                  {greeting.message}
+                                </CardContent>
+                                <CardFooter className="px-0 text-[10px] text-foreground flex-row-reverse">
+                                  {new Date(greeting.timestamp)
+                                    .toLocaleDateString("id-ID", {
+                                      day: "2-digit",
+                                      month: "short",
+                                      year: "numeric",
+                                      hour: "2-digit",
+                                      minute: "2-digit",
+                                      hour12: false,
+                                    })
+                                    .replace(/,/, ", ")}
+                                </CardFooter>
+                              </Card>
+                            </div>
+                          ))}
+                          {isFetchingNextPage && (
+                            <div className="flex items-center justify-center py-4">
+                              <LoadingSpin className="text-primary"/>
+                              <span className="ml-2 text-primary text-xs">
+                                Memuat lebih banyak...
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </ScrollArea>
                       {/* Fade effect overlays - only show when not at top/bottom */}
