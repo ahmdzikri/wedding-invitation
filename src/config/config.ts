@@ -132,7 +132,7 @@ const config: Config = {
       akad: {
         title: "Akad Nikah",
         date: "2025-12-21",
-        startTime: "08:00",
+        startTime: "07:30",
         endTime: "09:00",
         timeZone: "Asia/Jakarta",
         location: {
@@ -149,7 +149,7 @@ const config: Config = {
       resepsi: {
         title: "Resepsi",
         date: "2025-12-21",
-        startTime: "10:00",
+        startTime: "10:30",
         endTime: "14:00",
         timeZone: "Asia/Jakarta",
         location: {

@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     siteName: config.meta.title,
     images: [
       {
-        url: "/logo-nama.jpg",
+        url: "/og.jpeg",
         width: 1200,
         height: 630,
         alt: `${config.meta.title} – Undangan Pernikahan`,
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     description: config.meta.description,
     images: [
       {
-        url: "/logo-nama.jpg",
+        url: "/og.jpeg",
         alt: `${config.meta.title} – Undangan Pernikahan`,
       },
     ],
