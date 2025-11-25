@@ -29,7 +29,7 @@ export default function ClosingSection() {
             </h2>
             <span className="text-xs 2xl:text-base text-foreground">
               Tiada yang dapat kami ungkapkan selain rasa syukur, dan tiada yang
-              kami harapkan selain kehadiran dan doa rest
+              kami harapkan selain kehadiran dan doa restu.
             </span>
             <p className="text-3xl font-hello-paris text-foreground font-bold">
               {data.brideName} & {data.groomName}

@@ -85,9 +85,9 @@ interface Config {
 const config: Config = {
   // Meta Information
   meta: {
-    title: "Ainil & Reza Wedding",
+    title: "THE WEDDING OF AINIL & REZA - 21 DECEMBER 2025",
     description:
-      "We are getting married and would love for you to be a part of our celebration.",
+      "Kebahagiaan kami akan semakin sempurna dengan kehadiran dan doa restu Bapak/Ibu/Saudara/i di hari bahagia ini.",
     ogImage: "/images/image.png",
     favicon: "/app/favicon.ico",
   },
