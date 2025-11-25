@@ -170,7 +170,6 @@ function HomeContent() {
       <IntroSection
         decodedGuestName={decodedGuestName}
         onOpenInvitation={openInvitation}
-        useGuestName={true}
       />
     );
   }
