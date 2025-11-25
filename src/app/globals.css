@@ -56,6 +56,7 @@
   --background-image-pattern-batik: url('/pattern-batik.webp');
   --background-image-frame-flower-with-rg: url('/frame-flower-with-rg.webp');
   --background-image-frame-flower: url('/frame-flower.webp');
+  --background-image-frame: url('/background.webp');
 }
 
 :root {
