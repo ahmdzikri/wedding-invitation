@@ -23,7 +23,8 @@ export function formatWeddingDate(dateString: string): string {
     month: "long",
     day: "numeric",
   };
-  return date.toLocaleDateString("id-ID", options);
+  const formatted = date.toLocaleDateString("id-ID", options);
+  return formatted.replace("Minggu", "Ahad");
 }
 
 /**
