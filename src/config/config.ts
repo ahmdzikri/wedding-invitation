@@ -59,6 +59,7 @@ interface EventConfig {
 interface AudioConfig {
   src: string;
   loop: boolean;
+  volume?: number; // 0.0 to 1.0
 }
 
 interface Photo {
@@ -174,6 +175,7 @@ const config: Config = {
   audio: {
     src: "/wedding-song.mp3",
     loop: true,
+    volume: 0.3, // 0.0 (mute) to 1.0 (full volume)
   },
   gallery: {
     photos: [

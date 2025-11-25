@@ -36,6 +36,7 @@ function HomeContent() {
       const audio = new Audio();
       audio.src = config.audio.src;
       audio.loop = config.audio.loop;
+      audio.volume = config.audio.volume ?? 0.5; // Default to 50% if not set
       audio.preload = "auto";
 
       audio.addEventListener("canplaythrough", () => {

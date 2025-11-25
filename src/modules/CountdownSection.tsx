@@ -15,7 +15,7 @@ export default function CountdownSection({
 }: CountdownSectionProps) {
   return (
     <section
-      className={`relative z-10 px-6 pt-32 pb-12 text-center bg-background w-full min-h-dvh flex items-start justify-center ${className}`}
+      className={`relative z-10 px-6 pt-32 pb-12 text-center bg-background w-full min-h-screen flex items-start justify-center ${className}`}
       ref={ref}
     >
       <div className="absolute inset-0 bottom-0 top-auto bg-hills bg-no-repeat bg-top h-[60%] md:h-[80%] bg-cover" />
