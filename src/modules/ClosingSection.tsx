@@ -1,6 +1,7 @@
 "use client";
 import { Heart } from "lucide-react";
-import Smoke from "~/components/ui/shadcn-io/smoke";
+import Image from "next/image";
+import LazySmoke from "~/components/LazySmoke";
 import config from "~/config/config";
 
 export default function ClosingSection() {
@@ -13,7 +14,7 @@ export default function ClosingSection() {
       
       <div className="fixed top-0 h-[calc(100vh_-_34px)] w-full flex flex-col items-center justify-center">
         <div className="absolute inset-0 pointer-events-none z-0">
-          <Smoke
+          <LazySmoke
             opacity={0.3}
             density={30}
             enableRotation={false}
@@ -22,23 +23,31 @@ export default function ClosingSection() {
             color="#f8ebdd"
           />
         </div>
-        <div className="relative flex justify-center items-center w-full max-w-[27rem] 2xl:max-w-[32rem] h-full aspect-[600/1011] bg-frame-flower-with-rg bg-no-repeat bg-center bg-contain p-4">
-          <div className="flex flex-col gap-4 items-center justify-center max-w-xs text-center px-6 -mt-44">
-            <h2 className="text-sm 2xl:text-lg text-foreground uppercase">
+        <div className="relative flex justify-center items-center w-full max-w-[27rem] 2xl:max-w-[32rem] h-full aspect-[600/1011] p-4">
+          <Image
+            src="/frame-flower-with-rg.webp"
+            alt=""
+            fill
+            sizes="(max-width: 1536px) 27rem, 32rem"
+            className="object-contain object-center pointer-events-none"
+            loading="lazy"
+          />
+          <div className="flex flex-col gap-4 items-center justify-center max-w-xs text-center px-6 -mt-44 z-10">
+            <h2 className="text-sm 2xl:text-base text-foreground uppercase">
               Terima Kasih
             </h2>
-            <span className="text-xs 2xl:text-base text-foreground">
+            <span className="text-xs 2xl:text-sm text-foreground">
               Tiada yang dapat kami ungkapkan selain rasa syukur, dan tiada yang
               kami harapkan selain kehadiran dan doa restu.
             </span>
-            <p className="text-3xl font-hello-paris text-foreground font-bold">
+            <p className="text-4xl font-hello-paris text-foreground font-bold leading-0 py-4">
               {data.brideName} & {data.groomName}
             </p>
-            <div className="mt-6">
+            <div className="mt-2">
               <p className="text-xs xl:text-sm text-foreground font-arima font-semibold leading-relaxed">
                 "Karajo nan ba pokok, silang nan ba pangka"
               </p>
-              <p className="text-xs 2xl:text-sm text-foreground mt-1">
+              <p className="text-xs 2xl:text-sm text-foreground mt-2">
                 Turut Mengundang : <br /> Ninik Mamak, Alim Ulama, Cadiak Pandai, dan Urang Sumando
               </p>
             </div>

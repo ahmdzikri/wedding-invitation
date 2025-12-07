@@ -62,6 +62,7 @@ export default function EventsSection({ className = "" }: EventsSectionProps) {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="mb-12 max-w-4xl mx-auto"
         >
           <h2 className="text-xl text-primary-foreground mb-8">

@@ -18,6 +18,7 @@ export default function CoupleSection({ className = "" }: CoupleSectionProps) {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="flex flex-col gap-4 py-6 justify-center text-primary"
         >
           <h2 className="text-xl md:text-2xl lg:text-3xl font-amiri">

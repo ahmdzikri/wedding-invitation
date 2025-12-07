@@ -2,20 +2,31 @@
 
 import { Volume2, VolumeX } from "lucide-react";
 import { motion } from "motion/react";
+import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
 import SmoothScroll from "~/components/SmoothScroll";
 import { Button } from "~/components/ui/button";
 import config from "~/config/config";
-import ClosingSection from "~/modules/ClosingSection";
-import CountdownSection from "~/modules/CountdownSection";
-import CoupleSection from "~/modules/CoupleSection";
-import EventsSection from "~/modules/EventsSection";
-import Footer from "~/modules/Footer";
-import GreetingFormSection from "~/modules/GreetingFormSection";
 import HeaderSection from "~/modules/HeaderSection";
 import IntroSection from "~/modules/IntroSection";
-import LocationSection from "~/modules/LocationSection";
+
+const CountdownSection = dynamic(() => import("~/modules/CountdownSection"), {
+  ssr: true,
+});
+const CoupleSection = dynamic(() => import("~/modules/CoupleSection"), {
+  ssr: true,
+});
+const EventsSection = dynamic(() => import("~/modules/EventsSection"), {
+  ssr: true,
+});
+const GreetingFormSection = dynamic(
+  () => import("~/modules/GreetingFormSection"),
+  { ssr: true }
+);
+const ClosingSection = dynamic(() => import("~/modules/ClosingSection"), {
+  ssr: true,
+});
 
 // Client component that uses useSearchParams
 function HomeContent() {
@@ -24,90 +35,39 @@ function HomeContent() {
   const decodedGuestName = decodeURIComponent(guestName.replace(/\+/g, " "));
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audioLoaded, setAudioLoaded] = useState(false);
   const [showInvitation, setShowInvitation] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const openingRef = useRef<HTMLElement>(null);
 
+  // Handle page visibility change to pause/resume music
   useEffect(() => {
-    // Initialize audio
-    if (typeof window !== "undefined") {
-      const audio = new Audio();
-      audio.src = config.audio.src;
-      audio.loop = config.audio.loop;
-      audio.volume = config.audio.volume ?? 0.5; // Default to 50% if not set
-      audio.preload = "auto";
-
-      audio.addEventListener("canplaythrough", () => {
-        setAudioLoaded(true);
-      });
-
-      audio.addEventListener("error", (e) => {
-        console.error("Audio error:", e);
-        setAudioLoaded(false);
-      });
-
-      audioRef.current = audio;
-
-      return () => {
-        if (audioRef.current) {
-          audioRef.current.pause();
-          audioRef.current.src = "";
-        }
-      };
-    }
-  }, []);
-
-  useEffect(() => {
-    // Handle page visibility change to pause/resume music
     const handleVisibilityChange = () => {
-      if (audioRef.current && audioLoaded) {
-        if (document.hidden) {
-          // Page is hidden (user switched tabs), pause music
-          if (isPlaying) {
-            audioRef.current.pause();
-          }
-        } else {
-          // Page is visible again, resume music if it was playing
-          if (isPlaying && audioRef.current.paused) {
-            const playPromise = audioRef.current.play();
-            if (playPromise !== undefined) {
-              playPromise.catch((error) => {
-                console.error("Audio resume failed:", error);
-              });
-            }
-          }
-        }
+      const audio = audioRef.current;
+      if (!audio) return;
+
+      if (document.hidden && isPlaying) {
+        audio.pause();
+      } else if (!document.hidden && isPlaying && audio.paused) {
+        audio.play().catch(() => {});
       }
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, [isPlaying, audioLoaded]);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, [isPlaying]);
 
   const toggleAudio = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        const playPromise = audioRef.current.play();
+    const audio = audioRef.current;
+    if (!audio) return;
 
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              setIsPlaying(true);
-            })
-            .catch((error) => {
-              console.error("Audio playback failed:", error);
-              setIsPlaying(false);
-            });
-        }
-      }
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      audio.play()
+        .then(() => setIsPlaying(true))
+        .catch(() => setIsPlaying(false));
     }
   };
   const smoothScrollTo = (element: HTMLElement, duration = 2000) => {
@@ -124,7 +84,6 @@ function HomeContent() {
       if (timeElapsed < duration) requestAnimationFrame(animation);
     };
 
-    // Easing function untuk smooth animation
     const easeInOutQuad = (t: number, b: number, c: number, d: number) => {
       const progress = t / d;
       const easedProgress =
@@ -150,20 +109,14 @@ function HomeContent() {
   const openInvitation = () => {
     setShowInvitation(true);
 
-    // Start playing music when invitation is shown
-    if (audioRef.current && !isPlaying && audioLoaded) {
-      const playPromise = audioRef.current.play();
+    const audio = new Audio(config.audio.src);
+    audio.loop = config.audio.loop;
+    audio.volume = config.audio.volume ?? 0.5;
+    audioRef.current = audio;
 
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch((error) => {
-            console.error("Audio playback failed:", error);
-          });
-      }
-    }
+    audio.play()
+      .then(() => setIsPlaying(true))
+      .catch(() => setIsPlaying(false));
   };
 
   if (!showInvitation) {
@@ -188,13 +141,7 @@ function HomeContent() {
           size="icon"
           className="rounded-full shadow-xl  bg-white backdrop-blur-sm hover:bg-white/80 border border-accents"
           onClick={toggleAudio}
-          title={
-            audioLoaded
-              ? isPlaying
-                ? "Matikan musik"
-                : "Putar musik"
-              : "Audio tidak tersedia"
-          }
+          title={isPlaying ? "Matikan musik" : "Putar musik"}
         >
           {isPlaying ? (
             <Volume2 color="var(--primary)" />
@@ -230,7 +177,7 @@ export default function Home() {
     <Suspense
       fallback={
         <div className="h-screen w-full bg-muted flex items-center justify-center">
-          <div className="relative flex items-center justify-center mt-[-10rem] text-center">
+          <div className="relative flex items-center justify-center font-hello-paris mt-[-10rem] text-center">
             <h2 className="relative z-10 text-8xl text-foreground -translate-y-4">
               {config.couple.brideName.charAt(0).toUpperCase()}
             </h2>

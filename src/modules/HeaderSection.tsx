@@ -1,7 +1,8 @@
 "use client";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { motion } from "motion/react";
-import Smoke from "~/components/ui/shadcn-io/smoke";
+import Image from "next/image";
+import LazySmoke from "~/components/LazySmoke";
 import config from "~/config/config";
 import { formatHeaderDate } from "~/lib/wedding-functions";
 
@@ -20,8 +21,16 @@ export default function HeaderSection({ className = "" }: HeaderSectionProps) {
       <div
         className={`fixed bottom-0 h-screen w-full flex items-center justify-center ${className}`}
       >
-        <div className="relative flex justify-center items-center w-full h-screen aspect-[600/1011] bg-frame-flower bg-no-repeat bg-center bg-contain p-4">
-          <div className="flex flex-col items-center justify-center">
+        <div className="relative flex justify-center items-center w-full h-screen aspect-[600/1011] p-4">
+          <Image
+            src="/frame-flower.webp"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-contain object-center pointer-events-none"
+            loading="lazy"
+          />
+          <div className="z-10 flex flex-col items-center justify-center">
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -64,10 +73,10 @@ export default function HeaderSection({ className = "" }: HeaderSectionProps) {
           </div>
         </div>
         <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 h-[50dvh] [mask-image:linear-gradient(to_top,rgba(0,0,0,1)_70%,rgba(0,0,0,.85)_82%,rgba(0,0,0,.6)_92%,rgba(0,0,0,.35)_98%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_top,rgba(0,0,0,1)_50%,rgba(0,0,0,.85)_62%,rgba(0,0,0,.6)_72%,rgba(0,0,0,.35)_82%,transparent_100%)] [mask-repeat:no-repeat][-webkit-mask-repeat:no-repeat] [mask-size:100%_100%] [-webkit-mask-size:100%_100%]">
-          <Smoke
+          <LazySmoke
             className="w-full h-full"
-            opacity={0.3}
-            density={40}
+            opacity={0.25}
+            density={25}
             enableRotation={false}
             enableWind={false}
             enableTurbulence={false}

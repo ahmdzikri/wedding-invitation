@@ -2,9 +2,10 @@
 
 import { MailOpenIcon } from "lucide-react";
 import { motion } from "motion/react";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Button } from "~/components/ui/button";
-import Smoke from "~/components/ui/shadcn-io/smoke";
+import LazySmoke from "~/components/LazySmoke";
 import config from "~/config/config";
 import { formatWeddingDate } from "~/lib/wedding-functions";
 
@@ -28,7 +29,7 @@ export default function IntroSection({
     <div className="container-box bg-primary h-screen flex items-end">
       <div className="w-full flex flex-col items-center justify-center">
         <div className="absolute inset-0 pointer-events-none z-0 mask-b-from-30% mask-b-to-90%">
-          <Smoke
+          <LazySmoke
             density={20}
             opacity={0.4}
             enableRotation={false}
@@ -58,13 +59,13 @@ export default function IntroSection({
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              <p className="text-primary font-be-vietnam-pro text-xs 2xl:text-base tracking-widest uppercase">
+              <p className="text-primary font-be-vietnam-pro text-xs 2xl:text-sm tracking-widest uppercase">
                 Undangan Pernikahan
               </p>
-              <h1 className="text-5xl 2xl:text-7xl font-hello-paris font-bold text-primary tracking-tighter mb-2">
+              <h1 className="text-5xl 2xl:text-5xl font-hello-paris font-bold text-primary tracking-tighter mb-2">
                 {config.couple.brideName} & {config.couple.groomName}
               </h1>
-              <p className="text-primary text-sm 2xl:text-base tracking-widest">
+              <p className="text-primary text-sm tracking-widest">
                 {formatWeddingDate(config.event.date)}
               </p>
             </motion.div>
@@ -75,11 +76,11 @@ export default function IntroSection({
               transition={{ delay: 0.9, duration: 0.8 }}
             >
               {useGuestName && (
-                <div className="flex flex-col items-center justify-center gap-1 mb-2 px-4">
-                  <span className="text-primary">
+                <div className="flex flex-col items-center justify-center gap-1 mb-8 px-4">
+                  <span className="text-primary text-sm">
                     Kepada Bapak/Ibu/Saudara/i{" "}
                   </span>
-                  <span className="font-semibold text-primary">
+                  <span className="font-semibold text-primary text-xl capitalize">
                     {displayGuestName}
                   </span>
                 </div>
@@ -107,8 +108,17 @@ export default function IntroSection({
               delay: 1,
               ease: [0, 0.71, 0.2, 1.01],
             }}
-            className="absolute left-1/2 -translate-x-1/2 bottom-0 h-full w-full max-w-[27rem] 2xl:max-w-[30rem] bg-rumah-gadang bg-contain bg-bottom bg-no-repeat"
-          />
+            className="absolute left-1/2 -translate-x-1/2 bottom-0 h-full w-full max-w-[27rem] 2xl:max-w-[20rem]"
+          >
+            <Image
+              src="/rumah-gadang.webp"
+              alt=""
+              fill
+              sizes="(max-width: 1536px) 27rem, 30rem"
+              className="object-contain object-bottom"
+              loading="lazy"
+            />
+          </motion.div>
         </motion.div>
       </div>
     </div>

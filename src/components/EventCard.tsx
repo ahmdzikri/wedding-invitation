@@ -32,19 +32,30 @@ export default function EventCard(props: EventCardProps) {
       initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ delay, duration: 0.8 }}
+      viewport={{ once: true }}
       className="bg-background pt-9 pb-6 px-6 rounded-2xl shadow-lg shadow-black hover:shadow-xl transition-shadow duration-300 relative overflow-hidden text-primary"
     >
-      <div className="absolute left-0 right-0 bottom-0 h-full bg-[url('/bg-rumah-gadang.png')] bg-no-repeat bg-contain bg-bottom pointer-events-none" />
+      <div className="absolute left-0 right-0 bottom-0 h-full pointer-events-none">
+        <Image
+          src="/bg-rumah-gadang.png"
+          alt=""
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-contain object-bottom"
+          loading="lazy"
+        />
+      </div>
 
       <h3 className="text-3xl font-hello-paris font-bold mb-10 text-center relative z-10">
         <span className="inline-block relative">
           {title}
           <Image
             src="/flower.png"
-            alt="flower"
-            width={400}
-            height={400}
+            alt=""
+            width={80}
+            height={80}
             className="absolute -top-5 -right-8 w-20 h-20"
+            loading="lazy"
           />
         </span>
       </h3>
@@ -78,6 +89,7 @@ export default function EventCard(props: EventCardProps) {
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
               className="max-w-2xl mx-auto w-full aspect-video rounded-md overflow-hidden z-20 shadow-xl/20 border border-white"
             >
               <iframe

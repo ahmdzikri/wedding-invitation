@@ -6,14 +6,12 @@
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-great-vibes: var(--font-great-vibes);
   --font-amiri: var(--font-amiri);
   --font-arima: var(--font-arima);
   --font-be-vietnam-pro: var(--font-be-vietnam-pro);
   --font-hello-paris: "Hello Paris", serif;
   --font-hello-paris-script: "Hello Paris Script", cursive;
   --font-hello-paris-extra: "Hello Paris Extra", serif;
-  --font-tangerine: var(--font-tangerine);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -54,8 +52,6 @@
   --background-image-rumah-gadang: url('/rumah-gadang.webp');
   --background-image-pattern-flower: url('/pattern-flower.webp');
   --background-image-pattern-batik: url('/pattern-batik.webp');
-  --background-image-frame-flower-with-rg: url('/frame-flower-with-rg.webp');
-  --background-image-frame-flower: url('/frame-flower.webp');
   --background-image-frame: url('/background.webp');
 }
 

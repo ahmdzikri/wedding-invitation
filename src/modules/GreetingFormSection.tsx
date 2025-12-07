@@ -132,6 +132,7 @@ export default function GreetingFormSection({
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
           <CardHeader>
             <CardTitle className="text-lg md:text-xl text-primary text-center font-bold tracking-widest uppercase">
@@ -150,6 +151,7 @@ export default function GreetingFormSection({
               initial={{ y: 30, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
             >
               <Card className="bg-primary w-full">
                 <CardContent>
@@ -295,6 +297,7 @@ export default function GreetingFormSection({
               initial={{ y: 30, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.8 }}
+              viewport={{ once: true }}
             >
               <Card className="w-full gap-0 bg-muted border-8 border-primary shadow-xl">
                 <CardHeader>
@@ -382,6 +385,7 @@ export default function GreetingFormSection({
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
+            viewport={{ once: true }}
             className="my-12 max-w-4xl mx-auto"
           >
             <div className="text-center space-y-4">
