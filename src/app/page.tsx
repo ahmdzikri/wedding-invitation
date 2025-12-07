@@ -229,8 +229,8 @@ export default function Home() {
   return (
     <Suspense
       fallback={
-        <div className="h-dvh w-full bg-muted flex items-center justify-center">
-          <div className="relative flex items-center justify-center font-hello-paris mt-[-10rem] text-center">
+        <div className="h-screen w-full bg-muted flex items-center justify-center">
+          <div className="relative flex items-center justify-center mt-[-10rem] text-center">
             <h2 className="relative z-10 text-8xl text-foreground -translate-y-4">
               {config.couple.brideName.charAt(0).toUpperCase()}
             </h2>

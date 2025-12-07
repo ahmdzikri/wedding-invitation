@@ -45,7 +45,7 @@ export default function IntroSection({
             delay: 0.2,
             ease: [0, 0.71, 0.2, 1.01],
           }}
-          className="relative flex justify-center items-center w-full h-screen max-h-[calc(100dvh-40px)] aspect-[1022/1915] bg-frame bg-no-repeat bg-center bg-contain p-4"
+          className="relative flex justify-center items-center w-full h-screen max-h-[calc(100vh-40px)] aspect-[1022/1915] bg-frame bg-no-repeat bg-center bg-contain p-4"
         >
           <motion.div
             initial={{ opacity: 0 }}
